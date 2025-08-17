@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InquiryController;
 
-Route::get('/', function () {
-    //return view('welcome');
-    return view('home');
-});
+Route::view('/', 'home')->name('home');
 
-Route::get('/get-started', function () {
-    return view('get-started');
-});
+Route::view('/get-started', 'get-started')->name('get-started');      // GET
+Route::post('/get-started', [InquiryController::class, 'store'])      // POST
+    ->name('inquiries.store');
+
+Route::view('/get-started/thank-you', 'thank-you')->name('get-started.thankyou');

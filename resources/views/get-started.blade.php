@@ -124,7 +124,7 @@
     </div>
 
     <div class="shell">
-        <form action="#" method="POST" id="multiStepForm" novalidate>
+        <form action="{{ route('inquiries.store') }}" method="POST" id="multiStepForm" novalidate>
             @csrf
 
             @php
@@ -527,7 +527,7 @@
                 row('Package', data.package, 4),
                 row('Timeline', data.timeline, 4),
                 row('Referral', data.referral, 4),
-                row('Booked Call', bookedTxt, 5),
+                //row('Booked Call', bookedTxt, 5),
             ].join('');
         }
         document.getElementById('reviewTable').addEventListener('click', (e) => {
@@ -546,11 +546,25 @@
         });
 
         formEl.addEventListener('submit', () => {
-            const step3 = document.querySelector('[data-step="3"]');
+            /*const step3 = document.querySelector('[data-step="3"]');
             const count = step3.querySelectorAll('.card-toggle.selected').length;
             if (count === 0) { showStep(2); alert('Please select at least one pain point.'); return false; }
-            saveToStorage();
+            saveToStorage();*/
             // localStorage.removeItem(STORAGE_KEY);
+        
+        // Keep this validation if you want to enforce a pain point selection server-side anyway
+            const step3 = document.querySelector('[data-step="3"]');
+            const count = step3.querySelectorAll('.card-toggle.selected').length;
+
+            if (count === 0) {
+                e.preventDefault(); // <-- actually stops submission
+                showStep(2);
+                alert('Please select at least one pain point.');
+                return;
+            }
+
+            // If everything’s okay, clear localStorage so the next user starts fresh
+            localStorage.removeItem('neyhive_get_started_v7');
         });
 
         // Init
