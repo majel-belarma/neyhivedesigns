@@ -163,7 +163,7 @@
                     <li>Clean Booking/Contact Flow</li>
                     <li>Mobile-Friendly, SEO-Ready Basics</li>
                     <li>Branding & Visual Design Refresh</li>
-                    <li>Clarity Guide / Roadmap</li>
+                    <li>Post-Launch Support & Training</li>
                 </ul>
                 <a href="/get-started" class="btn">Build My Foundation</a>
             </div>
@@ -177,7 +177,7 @@
                 <ul class="features">
                     <li>Everything in The Hive Foundation, plus:</li>
                     <li>Full redesign of up to 12 pages (covers majority of practice websites)</li>
-                    <li>Premium Visual Design System (fonts, colors, layouts, graphics)</li>
+                    <li>SPremium Visual Design System (fonts, colors, layouts, graphics)</li>
                     <li>Optimized UX for Bookings & Conversions</li>
                     <li>Accessibility & Performance Testing</li>
                     <li>Post-Launch Training & Support</li>
