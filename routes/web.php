@@ -10,3 +10,5 @@ Route::post('/get-started', [InquiryController::class, 'store'])      // POST
     ->name('inquiries.store');
 
 Route::view('/get-started/thank-you', 'thank-you')->name('get-started.thankyou');
+
+Route::view('/spa', 'spa')->name('spa');
