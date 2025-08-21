@@ -99,7 +99,7 @@ body{padding-top:70px;margin:0;font-family:'Commissioner',sans-serif;color:var(-
 /* ===== MEDIA QUERIES (CLEAN) ===== */
 @media(max-width:900px){.section-intro{grid-template-columns:1fr;}.intro-media{order:2;aspect-ratio:16/12;height:auto;}.intro-content{order:1;padding:50px 20px;}.ritual-card{min-width:280px;}.section-rituals{padding:50px 20px;}}
 @media(max-width:768px){
-  .navbar{padding:12px 16px;}
+  .navbar{padding:12px 20px !important;}
   .menu-toggle{display:block;}
   .nav-links{position:fixed;left:0;right:0;top:57px;width:100vw;z-index:999;background:rgba(27,19,14,.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(231,211,168,.22);padding:16px 20px 20px;display:flex;flex-direction:column;align-items:flex-start;gap:14px;max-height:0;opacity:0;visibility:hidden;overflow:hidden;transform:translateY(-14px);filter:blur(6px);transition:max-height .9s ease,opacity .9s ease,transform .9s cubic-bezier(.22,.61,.36,1),filter .9s ease;}
 .nav-links.active{max-height:80vh;opacity:1;visibility:visible;transform:translateY(0);filter:blur(0);}  .nav-links a,.nav-links .book-btn{width:100%;text-align:left;}
