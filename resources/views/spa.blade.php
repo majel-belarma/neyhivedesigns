@@ -17,7 +17,7 @@ body{padding-top:70px;margin:0;font-family:'Commissioner',sans-serif;color:var(-
 .navbar{position:fixed;top:0;left:0;width:100%;z-index:10;display:flex;align-items:center;justify-content:space-between;background:rgba(27,19,14,1);padding:14px 40px;transform:translateY(-10px);opacity:0;filter:blur(4px);transition:transform .8s ease,opacity .8s ease,filter .8s ease,background-color .4s ease,backdrop-filter .4s ease;}
 .navbar.scrolled{background:rgba(27,19,14,0.75);backdrop-filter:blur(6px);box-shadow:0 4px 20px rgba(0,0,0,0.25);}
 .is-ready .navbar{transform:translateY(0);opacity:1;filter:blur(0);}
-.logo{font-family:'Literata',serif;font-size:1.3rem;font-weight:500;color:var(--text);}
+.logo{font-family:'Literata',serif;font-size:1.3rem;font-weight:400;color:var(--text);}
 .nav-links{display:flex;align-items:center;gap:24px;font-family:'Commissioner',sans-serif;}
 .nav-links a{color:var(--text);text-decoration:none;font-size:0.95rem;font-weight:400;transition:color .25s ease;position:relative;padding-bottom:2px;}
 .nav-links a:hover{color:#fff;}
@@ -64,13 +64,14 @@ body{padding-top:70px;margin:0;font-family:'Commissioner',sans-serif;color:var(-
 /* ===== RITUALS ===== */
 .section-rituals{background:#32231A;padding:64px 40px 56px;position:relative;z-index:0;overflow:visible;}
 .rituals-header{display:flex;align-items:center;justify-content:space-between;margin:0 0 36px 0;}
-.rituals-title{font-family:'Literata',serif;color:#E7D3A8;font-size:clamp(2.8rem,5vw,4rem);font-weight:400;font-style:italic;line-height:1;margin:0;}
+.rituals-title{font-family:'Literata',serif;color:#E7D3A8;font-size:clamp(2.8rem,5vw,4rem);font-weight:400;font-style:italic;line-height:1.1;margin:0;}
 .rituals-nav{display:flex;gap:16px;align-items:center;transform:translateY(1px);}
 .carousel-btn{width:clamp(36px,9vw,44px);height:clamp(36px,9vw,44px);padding:0;display:inline-flex;align-items:center;justify-content:center;border:1px solid #E7D3A8;background:transparent;color:#E7D3A8;cursor:pointer;transition:background .25s ease,color .25s ease,box-shadow .25s ease;line-height:1;font-weight:500;border-radius:0;}
 .carousel-btn:hover{background:#E7D3A8;color:#1B130E;box-shadow:0 6px 24px rgba(231,211,168,.18);}
 .carousel-btn svg{width:clamp(14px,4vw,18px);height:clamp(14px,4vw,18px);display:block;}
 .carousel-btn[disabled]{opacity:.45;pointer-events:none;box-shadow:none;filter:grayscale(.1);}
-.rituals-track{display:flex;gap:16px;overflow-x:auto;overflow-y:visible;scroll-snap-type:x mandatory;padding:8px 32px 40px;scrollbar-width:none;-ms-overflow-style:none;}
+.rituals-track{display:flex;gap:16px;overflow-x:auto;overflow-y:visible;scroll-snap-type:x mandatory;padding:8px 0 40px 0;scroll-padding-left:0!important;scrollbar-width:none;-ms-overflow-style:none;}
+.rituals-track > :first-child{margin-left:0!important;}
 .rituals-track::-webkit-scrollbar{display:none;}
 .ritual-card{position:relative;min-width:350px;max-width:380px;aspect-ratio:4/5.5;background:#1B130E;scroll-snap-align:start;overflow:hidden;isolation:isolate;}
 .ritual-card::after{content:"";position:absolute;top:-120%;left:-30%;width:40%;height:300%;transform:rotate(25deg) translateX(-120%);background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,.28) 50%,rgba(255,255,255,0) 100%);opacity:0;transition:transform .8s ease,opacity .35s ease;pointer-events:none;mix-blend-mode:screen;}
@@ -78,7 +79,7 @@ body{padding-top:70px;margin:0;font-family:'Commissioner',sans-serif;color:var(-
 .ritual-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.02) contrast(1.02);transition:transform .6s ease,filter .4s ease;}
 .ritual-card:hover img{transform:scale(1.08);filter:saturate(1.06) contrast(1.06);}
 .card-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:18px;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.55) 75%,rgba(0,0,0,.75) 100%);color:#fff;}
-.card-title{font-family:'Literata',serif;letter-spacing:.5px;font-style:italic;margin:0 0 2px 0;font-size:1.35rem;font-weight:500;text-shadow:0 2px 12px rgba(0,0,0,.45);}
+.card-title{font-family:'Literata',serif;letter-spacing:.5px;font-style:italic;margin:0 0 2px 0;font-size:1.35rem;font-weight:500;text-shadow:0 2px 12px rgba(0,0,0,.45);line-height: 1.2;}
 .card-sub{margin:0;font-size:.98rem;color:#E8E2DA;opacity:.95;line-height:1.45;max-width:36ch;font-weight:300;}
 
 /* ===== RITUALS REVEAL ===== */
@@ -95,11 +96,30 @@ body{padding-top:70px;margin:0;font-family:'Commissioner',sans-serif;color:var(-
 @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
 
 /* ===== MEDIA QUERIES ===== */
+/* ===== MEDIA QUERIES (CLEAN) ===== */
 @media(max-width:900px){.section-intro{grid-template-columns:1fr;}.intro-media{order:2;aspect-ratio:16/12;height:auto;}.intro-content{order:1;padding:50px 20px;}.ritual-card{min-width:280px;}.section-rituals{padding:50px 20px;}}
-@media(max-width:768px){.menu-toggle{display:block;}.nav-links{display:none;position:absolute;top:60px;right:0;background:var(--brown);width:220px;padding:20px;flex-direction:column;gap:16px;}.nav-links.active{display:flex;}.hero{height:85vh;padding:0 4%;}.hero-content{margin-top:130px;}.title-light{grid-column:1;grid-row:1;margin-left:74px;font-size:64px;line-height:0;}.title-heavy{grid-column:1;grid-row:2;font-size:120px;line-height:0.95;}.hero-desc{grid-column:1;grid-row:3;margin:32px 8px 0 8px;height:auto;align-self:start;justify-content:flex-start;font-size:clamp(0.95rem,3.8vw,1.05rem);line-height:1.5;}.hero-bg source{display:block;}.image-overlay source{display:block;}}
-@media(max-width:600px){.rituals-nav{gap:12px;}.carousel-btn{width:clamp(30px,10vw,36px);height:clamp(30px,10vw,36px);}.carousel-btn svg{width:clamp(12px,4vw,16px);height:clamp(12px,4vw,16px);}}
+@media(max-width:768px){
+  .navbar{padding:12px 16px;}
+  .menu-toggle{display:block;}
+  .nav-links{position:fixed;left:0;right:0;top:57px;width:100vw;z-index:999;background:rgba(27,19,14,.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(231,211,168,.22);padding:16px 20px 20px;display:flex;flex-direction:column;align-items:flex-start;gap:14px;max-height:0;opacity:0;visibility:hidden;overflow:hidden;transform:translateY(-14px);filter:blur(6px);transition:max-height .9s ease,opacity .9s ease,transform .9s cubic-bezier(.22,.61,.36,1),filter .9s ease;}
+.nav-links.active{max-height:80vh;opacity:1;visibility:visible;transform:translateY(0);filter:blur(0);}  .nav-links a,.nav-links .book-btn{width:100%;text-align:left;}
+  .hero{height:85vh;padding:0 4%;}
+  .hero-content{margin-top:130px;}
+  .title-light{grid-column:1;grid-row:1;margin-left:56px;font-size:52px;line-height:.1;}
+  .title-heavy{grid-column:1;grid-row:2;font-size:96px;line-height:.85;}
+  .hero-desc{grid-column:1;grid-row:3;margin:24px 6px;height:auto;align-self:start;justify-content:flex-start;max-width:32ch;font-size:clamp(0.95rem,3.8vw,1.05rem);line-height:1.5;}
+  .hero-bg source{display:block;}
+  .image-overlay{display:none!important;}
+  .image-overlay source{display:block;}
+}
+@media(max-width:768px){.nav-links{align-items:center;}}
+@media(max-width:768px){.nav-links a{width:auto!important;text-align:center;}}
+@media(max-width:768px){.nav-links .book-btn{align-self:center;display:inline-flex;justify-content:center;align-items:center;text-align:center;width:auto!important;margin:8px auto 0;}}
+
+@media(max-width:600px){.rituals-nav{gap:12px;}.carousel-btn{width:clamp(30px,10vw,36px);height:clamp(30px,10vw,36px);}.carousel-btn svg{width:clamp(12px,4vw,16px);height:clamp(12px,4vw,16px);}.navbar{padding:12px 14px;}}
 @media(max-width:360px){.carousel-btn{width:clamp(26px,11vw,32px);height:clamp(26px,11vw,32px);}.carousel-btn svg{width:clamp(10px,4.5vw,14px);height:clamp(10px,4.5vw,14px);}}
 @media(prefers-reduced-motion:reduce){.navbar,.title-light,.title-heavy,.hero-desc,.hero-bg img,.hero-content,.intro-content [data-sr]{animation:none!important;transition:none!important;transform:none!important;filter:none!important;opacity:1!important;}.nav-links a::after,.book-btn::after{transition:none!important;}.carousel-btn{transition:none!important;}.ritual-card{scroll-snap-align:none;}.section-rituals [data-rs]{transition:none!important;transform:none!important;opacity:1!important;}}
+
 </style>
 
 </head>
@@ -125,13 +145,6 @@ body{padding-top:70px;margin:0;font-family:'Commissioner',sans-serif;color:var(-
       <source media="(max-width: 768px)" srcset="{{ asset('elitean/elitean-banner-phone.webp') }}">
       <img src="{{ asset('elitean/elitean-banner.webp') }}" alt="Elitean Spa banner">
     </picture>
-
-<div class="glow-layer">
-  <div class="glow" style="--x:28%; --y:36%; --size:130px; --delay:0s;"></div>
-  <div class="glow" style="--x:58%; --y:48%; --size:120px; --delay:.6s;"></div>
-  <div class="glow" style="--x:42%; --y:62%; --size:140px; --delay:1.2s;"></div>
-  <div class="glow" style="--x:72%; --y:32%; --size:110px; --delay:1.8s;"></div>
-</div>
 
     <div class="overlay"></div>
 
@@ -185,9 +198,14 @@ body{padding-top:70px;margin:0;font-family:'Commissioner',sans-serif;color:var(-
   <div class="rituals-header" data-rs="1">
     <h2 class="rituals-title">Timeless Rituals</h2>
     <div class="rituals-nav" data-rs="2">
-      <button class="carousel-btn prev" aria-label="Previous"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <button class="carousel-btn next" aria-label="Next"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    </div>
+    <button class="carousel-btn prev" aria-label="Previous" disabled>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="carousel-btn next" aria-label="Next">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
   </div>
   <div class="rituals-track">
     <article class="ritual-card" data-rs="3">
@@ -235,16 +253,18 @@ body{padding-top:70px;margin:0;font-family:'Commissioner',sans-serif;color:var(-
 </html>
 
 <script>
-// Toggle mobile menu
-function toggleMenu(){document.getElementById('navLinks').classList.toggle('active');}
-// On load: enable global fade-in (.is-ready)
-window.addEventListener('DOMContentLoaded',()=>{document.body.classList.add('is-ready');});
+// Set navbar height CSS var on load (and enable global fade-in)
+window.addEventListener('DOMContentLoaded',()=>{const b=document.querySelector('.navbar');if(b)document.documentElement.style.setProperty('--navH',b.offsetHeight+'px');document.body.classList.add('is-ready');});
+// Update navbar height CSS var on resize
+window.addEventListener('resize',()=>{const b=document.querySelector('.navbar');if(b)document.documentElement.style.setProperty('--navH',b.offsetHeight+'px');});
+// Toggle mobile menu (recompute height each open/close)
+function toggleMenu(){const b=document.querySelector('.navbar');if(b)document.documentElement.style.setProperty('--navH',b.offsetHeight+'px');document.getElementById('navLinks')?.classList.toggle('active');}
 // On scroll: navbar opacity/blur toggle after 50px
-window.addEventListener('scroll',()=>{const n=document.querySelector('.navbar');window.scrollY>50?n.classList.add('scrolled'):n.classList.remove('scrolled');});
+window.addEventListener('scroll',()=>{const n=document.querySelector('.navbar');if(!n)return;window.scrollY>50?n.classList.add('scrolled'):n.classList.remove('scrolled');},{passive:true});
 // Intro section scroll-reveal (animate once on view)
-(()=>{const el=document.getElementById('introContent');if(!el)return;const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){el.classList.add('is-visible');io.unobserve(el);}})},{root:null,threshold:.25});io.observe(el);})();
-// Rituals carousel: arrows disabled until user scrolls right; keep disabled at ends
-window.addEventListener('DOMContentLoaded',()=>{const s=document.getElementById('rituals');if(!s)return;const t=s.querySelector('.rituals-track'),p=s.querySelector('.carousel-btn.prev'),n=s.querySelector('.carousel-btn.next');if(!t||!p||!n)return;const step=()=>t.querySelector('.ritual-card')?.getBoundingClientRect().width||320;const max=()=>Math.max(0,t.scrollWidth-t.clientWidth-1);const update=()=>{const x=Math.round(t.scrollLeft);p.disabled=x<=0;n.disabled=x<=0||x>=max();};p.disabled=true;n.disabled=true;t.addEventListener('scroll',()=>requestAnimationFrame(update),{passive:true});window.addEventListener('resize',update);p.addEventListener('click',()=>t.scrollBy({left:-step(),behavior:'smooth'}));n.addEventListener('click',()=>t.scrollBy({left:step(),behavior:'smooth'}));});
+window.addEventListener('DOMContentLoaded',()=>{const el=document.getElementById('introContent');if(!el)return;const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){el.classList.add('is-visible');io.unobserve(el);}})},{root:null,threshold:.25});io.observe(el);});
+// Rituals carousel: prev disabled at start; next enabled if overflow; disable at ends
+window.addEventListener('DOMContentLoaded',()=>{const s=document.getElementById('rituals');if(!s)return;const t=s.querySelector('.rituals-track'),p=s.querySelector('.carousel-btn.prev'),n=s.querySelector('.carousel-btn.next');if(!t||!p||!n)return;const step=()=>t.querySelector('.ritual-card')?.getBoundingClientRect().width||320;const atStart=()=>Math.round(t.scrollLeft)<=0;const atEnd=()=>t.scrollWidth-t.clientWidth-Math.round(t.scrollLeft)<=1;const update=()=>{p.disabled=atStart();n.disabled=atEnd();};update();p.addEventListener('click',()=>t.scrollBy({left:-step(),behavior:'smooth'}));n.addEventListener('click',()=>t.scrollBy({left:step(),behavior:'smooth'}));t.addEventListener('scroll',()=>requestAnimationFrame(update),{passive:true});window.addEventListener('resize',update);});
 // Rituals section staggered reveal (add .is-visible once)
 window.addEventListener('DOMContentLoaded',()=>{const s=document.getElementById('rituals');if(!s)return;const o=new IntersectionObserver(e=>{e.forEach(r=>{if(r.isIntersecting){s.classList.add('is-visible');o.unobserve(s);}})},{threshold:.2});o.observe(s);});
 </script>
