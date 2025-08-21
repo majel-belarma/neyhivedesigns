@@ -96,7 +96,10 @@ body{padding-top:70px;margin:0;font-family:'Commissioner',sans-serif;color:var(-
 .section-pillars{background:#1B130E;padding:80px 40px 100px;}
 .pillars-title{font-family:'Literata',serif;color:#E7D3A8;font-size:clamp(2.8rem,5vw,4rem);font-weight:400;line-height:1.1;font-style:italic;text-align:center;margin:0 0 44px 0;}
 .pillars-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;width:100%;margin:0;}
-.pillar-card{background:#221813;border:1px solid rgba(231,211,168,.28);padding:36px 28px 32px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;gap:16px;height:100%;box-shadow:0 0 0 rgba(0,0,0,0);transition:transform .45s cubic-bezier(.22,.61,.36,1),box-shadow .45s ease,border-color .45s ease;}
+.pillar-card{position:relative;background:#221813;border:1px solid rgba(231,211,168,.28);padding:36px 28px 32px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;gap:16px;height:100%;overflow:hidden;isolation:isolate;box-shadow:0 0 0 rgba(0,0,0,0);transition:transform .45s cubic-bezier(.22,.61,.36,1),box-shadow .45s ease,border-color .45s ease;}
+.pillar-card{position:relative;overflow:hidden;isolation:isolate;}
+.pillar-card::after{content:"";position:absolute;top:-26%;left:-32%;width:180px;height:300px;transform:rotate(25deg);background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(231,211,168,.22) 50%,rgba(255,255,255,0) 100%);filter:blur(8px);opacity:.55;mix-blend-mode:screen;pointer-events:none;}
+@media(max-width:768px){.pillar-card::after{top:-28%;left:-34%;width:140px;height:220px;filter:blur(7px);opacity:.5;}}
 .pillar-card:hover,.pillar-card:focus-visible{transform:translateY(-5px);box-shadow:0 16px 42px rgba(231,211,168,.18),0 10px 28px rgba(0,0,0,.22);border-color:rgba(231,211,168,.5);}
 .pillar-icon{width:78px;height:78px;display:block;object-fit:contain;filter:saturate(1.02) contrast(1.02); margin-bottom: 8px}
 .pillar-heading{font-family:'Literata',serif;letter-spacing:.5px;font-style:italic;margin:0;font-size:1.35rem;font-weight:500;text-shadow:0 2px 12px rgba(0,0,0,.45);line-height: 1.2;}
@@ -104,6 +107,8 @@ body{padding-top:70px;margin:0;font-family:'Commissioner',sans-serif;color:var(-
 @media(max-width:1024px){.pillars-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:768px){.section-pillars{padding:50px 20px 60px;}}
 @media(max-width:768px){.pillars-grid{grid-template-columns:1fr;}}
+@media(max-width:768px){.pillars-grid{gap:20px;}}
+
 /* Subtle luxe icon animation on hover/tap/focus (works for <img> or inline <svg>) */
 .pillar-icon,svg.pillar-icon{transition:transform .6s cubic-bezier(.22,.61,.36,1),filter .6s ease;will-change:transform;}
 .pillar-card:hover .pillar-icon,.pillar-card:focus-visible .pillar-icon,.pillar-card:active .pillar-icon,.pillar-card:hover svg.pillar-icon,.pillar-card:focus-visible svg.pillar-icon,.pillar-card:active svg.pillar-icon{transform:translateY(-3px) scale(1.05);filter:drop-shadow(0 8px 24px rgba(231,211,168,.18));}
