@@ -12,3 +12,7 @@ Route::post('/get-started', [InquiryController::class, 'store'])      // POST
 Route::view('/get-started/thank-you', 'thank-you')->name('get-started.thankyou');
 
 Route::view('/spa', 'spa')->name('spa');
+Route::view('/font', 'font')->name('font');
+Route::view('/portfolio', 'about')->name('about');
+
+Route::view('/demo', 'demo')->name('demo');

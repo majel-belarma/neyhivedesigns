@@ -4,757 +4,767 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Neyhive Designs</title>
-<style>
-:root{
-  --gold:#d4af37;
-  --gold-2:#e2c766;
-  --black:#0b0b0b;
-  --gray:#c7c7c7;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-  background: radial-gradient(1200px 600px at 70% -10%, rgba(212,175,55,0.15), transparent 60%), var(--black);
-  color:#fff;
-  line-height:1.6;
-}
-a{color:inherit;text-decoration:none}
-.container{max-width:1100px;margin:0 auto;padding:28px 20px 60px}
+  <link rel="icon" type="image/png" href="images/neyhive/favicon.png">
 
-/* Hero */
-.hero{
-  margin-top:28px;
-  border:1px solid rgba(212,175,55,0.25);
-  background:linear-gradient(180deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02)), #0e0e0e;
-  border-radius:20px;
-  padding:40px 28px;
-  position:relative;
-  overflow:hidden;
-  box-shadow: 0 10px 30px rgba(212,175,55,0.08);
+  <style>
+    /* =========================
+       1) DESIGN TOKENS
+       ========================= */
+    :root {
+      --bg-dark:#3b2717; --bg-mid:#5a3a22; --bg-lite:#8d623f;
+      --text:#2a1b0d; --muted:#5a4638;
+      --gold-1:#a77a2a; --gold-2:#f3d776; --gold-3:#b88a32;
+      --beige-1:#F6EFE8; --beige-2:#EFE6DE; --beige-3:#E7DBD1;
+      --font-display:'TT Ramillas Trl', ui-serif, Georgia, serif;
+      --font-body:'TT Interphases Pro', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      --wrap:1200px;
+      --nav-h:64px;
+    }
 
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+    /* =========================
+       2) BASE / RESET
+       ========================= */
+    body { margin:0; font-family:var(--font-body); background:#fff; color:#111; }
+    a { color:inherit; text-decoration:none; }
+    img { max-width:100%; display:block; height:auto; }
 
-  isolation:isolate; /* keeps sparkle effects inside */
-}
+    /* =========================
+       3) HERO (layout + background)
+       ========================= */
+    .nh-hero {
+      display:grid; grid-template-rows:auto 1fr;
+      position:relative; overflow:clip;
+      padding-top:var(--nav-h);
+      background:
+        radial-gradient(1200px 70% at 70% 30%, rgba(255,255,255,.06), transparent 60%),
+        radial-gradient(600px 600px at 80% 120%, rgba(255,173,41,0.3) 0%, rgba(27,19,14,0) 100%),
+        linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-mid) 45%, var(--bg-lite) 100%);
+      color:#f6efe8;
+    }
 
-/* Brand */
-.hero .brand{
-  display:inline-flex;
-  gap:10px;
-  align-items:center;
-  color:var(--gold);
-  font-weight:700;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  font-size:.9rem;
-  margin-bottom:10px;
-}
+    /* =========================
+       4) TOP NAVIGATION
+       ========================= */
+    .nh-nav-wrap { position:fixed; top:0; left:0; right:0; z-index:1000; transition:background .25s ease, backdrop-filter .25s ease, box-shadow .25s ease; }
+    .nh-nav-wrap.is-scrolled { background:rgba(68,48,34,0.85); backdrop-filter:saturate(100%) blur(10px); box-shadow:0 10px 30px rgba(0,0,0,.25); }
+    .nh-nav { position:relative; max-width:var(--wrap); margin:0 auto; padding:12px clamp(16px,3vw,28px); display:flex; align-items:center; justify-content:space-between; }
+    .nh-brand { display:inline-flex; align-items:center; font-weight:700; }
+    .nh-nav__toggle { display:none; }
+    .nh-nav__links { display:flex; gap:24px; align-items:center; }
+    .nh-nav__links a { position:relative; font-weight:500; transition:color .25s ease; }
+    .nh-nav__links a::after { content:""; position:absolute; left:0; bottom:-4px; width:0; height:2px; background:var(--gold-2); transition:width .25s ease; }
+    .nh-nav__links a:hover { color:var(--gold-2); }
+    .nh-nav__links a:hover::after { width:100%; }
 
-/* Headline */
-.hero h1{
-  margin:14px 0 10px;
-  font-size: clamp(28px, 5vw, 44px);
-  line-height:1.15;
-  max-width:20ch;
-}
+    /* =========================
+       6) BUTTONS
+       ========================= */
+    .nh-btn { cursor:pointer; border:0; padding:12px 18px; font-weight:600; border-radius:0; position:relative; overflow:hidden; transition:transform .2s ease, box-shadow .25s ease, background-position .3s ease, filter .25s ease; will-change:transform, box-shadow, background-position; }
+    .nh-btn--outline { border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.05); color:#f6efe8; }
+    .nh-btn--outline:hover { background:rgba(255,255,255,.12); }
+    .nh-btn--outline:active { transform:scale(.96); box-shadow:0 2px 6px rgba(0,0,0,.15); }
 
-/* Paragraph */
-.hero p{
-  margin:0 0 24px;
-  color:var(--gray);
-  max-width:60ch;
-}
+    .nh-btn--secondary { border:1px solid #443022; color:#443022; padding:16px 28px; text-align:center; background:transparent; position:relative; overflow:hidden; transition:color .3s ease, transform .2s ease, box-shadow .25s ease; }
+    .nh-btn--secondary::before { content:""; position:absolute; inset:0; border-radius:inherit; padding:1px; mask-composite:exclude; opacity:0; transition:opacity .35s ease; }
+    .nh-btn--secondary:hover::before { opacity:1; }
+    .nh-btn--secondary:hover { transform:translateY(-2px); box-shadow:0 6px 14px rgba(68,48,34,.15); }
+    .nh-btn--secondary:active { transform:scale(.96); box-shadow:0 3px 8px rgba(68,48,34,.12); }
 
-/* Accent shimmer */
-.accent.shimmer{
-  background: linear-gradient(
-    90deg,
-    var(--gold) 0%,
-    #fff3c4 18%,
-    var(--gold-2) 36%,
-    var(--gold) 52%,
-    var(--gold-2) 70%,
-    var(--gold) 100%
-  );
-  background-size: 220% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: text-shimmer 2.75s linear infinite;
-  text-shadow: 0 0 12px rgba(212,175,55,0.10);
-}
-@keyframes text-shimmer{
-  0%   { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
-}
+    .nh-btn--gold { padding:18px 32px; background:linear-gradient(105deg, var(--gold-1), var(--gold-2) 45%, var(--gold-3)); color:#2a1b0d; background-size:200%; background-position:left; box-shadow:0 2px 0 rgba(0,0,0,.06) inset; }
+    .nh-btn--gold:hover { background-position:right; transform:translateY(-2px); box-shadow:0 6px 16px rgba(167,122,42,.35); }
+    .nh-btn--gold:active { transform:scale(.96); box-shadow:0 3px 10px rgba(167,122,42,.25); filter:saturate(105%); }
 
-/* Hero effects: sweep + twinkle */
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:-45% -60%;
-  background: linear-gradient(
-    115deg,
-    transparent 0%,
-    rgba(226,199,102,0.06) 38%,
-    rgba(226,199,102,0.18) 50%,
-    rgba(226,199,102,0.06) 62%,
-    transparent 100%
-  );
-  transform: translateX(-60%) rotate(8deg);
-  animation: hero-sweep 6.5s linear infinite;
-  pointer-events:none;
-  z-index:0;
-  filter: blur(0.2px);
-}
-@keyframes hero-sweep{
-  0%   { transform: translateX(-60%) rotate(8deg); }
-  100% { transform: translateX(60%)  rotate(8deg); }
-}
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
-  background-image:
-    radial-gradient(2px 2px at 12% 22%, rgba(226,199,102,0.9), rgba(226,199,102,0) 55%),
-    radial-gradient(2px 2px at 78% 30%, rgba(226,199,102,0.8), rgba(226,199,102,0) 55%),
-    radial-gradient(1.6px 1.6px at 32% 68%, rgba(212,175,55,0.85), rgba(212,175,55,0) 55%),
-    radial-gradient(1.8px 1.8px at 60% 80%, rgba(226,199,102,0.85), rgba(226,199,102,0) 55%),
-    radial-gradient(1.6px 1.6px at 88% 64%, rgba(212,175,55,0.85), rgba(212,175,55,0) 55%),
-    radial-gradient(1.8px 1.8px at 18% 78%, rgba(226,199,102,0.9), rgba(226,199,102,0) 55%),
-    radial-gradient(1.6px 1.6px at 45% 28%, rgba(212,175,55,0.85), rgba(212,175,55,0) 55%);
-  animation: hero-twinkle 3.8s ease-in-out infinite;
-  opacity:.55;
-  filter: drop-shadow(0 0 2px rgba(212,175,55,0.25));
-}
-@keyframes hero-twinkle{
-  0%,100% { opacity:.45; transform: translateY(0) }
-  50%     { opacity:.95; transform: translateY(-1px) }
-}
-/* CTA button glow */
-.btn {
-  margin-top:auto;
-  display:inline-flex;
-  justify-content:center;
-  align-items:center;
-  gap:10px;
-  padding:12px 20px;
-  border-radius:12px;
-  font-weight:700;
-  letter-spacing:.02em;
-  border:1px solid var(--gold);
-  background:linear-gradient(180deg, var(--gold), var(--gold-2));
-  color:#111;
-  cursor:pointer;
-  position: relative;
-  overflow: hidden;
-  transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
-}
+    .nh-btn--coffee { background:linear-gradient(45deg, #4B2A1B 0%, #805A40 100%); color:#f6efe8; border:1px solid rgba(0,0,0,.1); padding:18px 32px; border-radius:0; }
+    .nh-btn--coffee:hover { transform:translateY(-2px); box-shadow:0 6px 16px rgba(75,42,27,.35); }
+    .nh-btn--coffee:active { transform:scale(.96); box-shadow:0 3px 10px rgba(75,42,27,.25); }
 
-/* Hover effect: shimmer + upscale */
-.btn::before {
-  content: "";
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.6) 50%,
-    transparent 100%
-  );
-  transition: left 0.6s ease;
-}
+    /* =========================
+       5) HERO CONTENT
+       ========================= */
+    .nh-wrap { max-width:var(--wrap); margin:0 auto; padding:0 clamp(16px,3vw,28px); }
+    .nh-hero__grid { display:grid; align-items:center; gap:clamp(28px,4vw,56px); grid-template-columns:1.1fr .9fr; min-height:82vh; }
 
-.btn:hover::before {
-  left: 100%;
-}
+    h1 { font-family:var(--font-display); line-height:0.3; margin:.2em 0 .1em; font-weight:400; font-size:clamp(3.4rem,6.4vw,6rem); }
+    .nh-accent { line-height:1.2; font-family:var(--font-display); display:block; font-size:clamp(4rem,11vw,7.25rem); font-weight:600; letter-spacing:.01em; font-style:italic; }
+    .nh-accent-row { display:flex; align-items:center; gap:clamp(8px,1.4vw,18px); }
+    .nh-arrow { margin-top:12px; }
+    .nh-lead { margin-top:1rem; font-family:var(--font-body); max-width:45ch; font-size:1.1rem; line-height:1.7; color:#e6d9cc; font-weight:400; letter-spacing:.2px; }
+    .nh-cta-row { margin-top:4rem; }
+    .nh-banner-image { display:flex; align-items:flex-end; justify-content:flex-end; height:100%; width:580px; }
+    .nh-portrait { margin:0; width:1000px; }
 
-.btn:hover {
-  filter: brightness(1.08);
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 26px rgba(212,175,55,0.28);
-}
+    h2 { font-family:var(--font-display); font-size:clamp(1.9rem,4vw,2.8rem); font-weight:500; line-height:1.25; }
+    h2 em { font-style:italic; color:#664833; font-weight:600; }
+    h3 { font-size:1.4rem; font-weight:600; font-family:var(--font-display); }
+    p { color:#443429; line-height:1.6; margin:1rem 0 2rem; font-size:1.05rem; }
 
-.btn:active {
-  transform: translateY(1px) scale(0.99);
-  box-shadow: 0 4px 12px rgba(212,175,55,0.18);
-}
+    /* =========================
+       7) COMPARE
+       ========================= */
+    .nh-compare { padding:clamp(48px,8vw,96px) 0; }
+    .nh-compare .nh-wrap { max-width:1200px; }
+    .nh-compare h2 { text-align:center; margin:0 0 clamp(24px,4vw,40px); }
 
+    /* =========================
+       8) BENEFITS
+       ========================= */
+    .nh-benefits { padding:clamp(56px,8vw,110px) 0; background:#fff; color:var(--text); }
+    .nh-benefits .nh-wrap { max-width:var(--wrap); }
+    .nh-benefits__header { display:grid; grid-template-columns:1.2fr .8fr; align-items:center; gap:clamp(12px,3vw,32px); margin-bottom:clamp(28px,4.5vw,52px); }
+    .nh-benefits__title { margin:0; }
+    .nh-benefits__kicker { justify-self:end; text-align:right; color:var(--muted); max-width:28ch; margin:0; }
+    .nh-benefits__grid { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,2.8vw,26px); }
+    .nh-benefit { background:#FAF7F4; padding:36px 30px; }
+    .nh-benefit__icon { width:80px; height:80px; background:#F5EEEA; display:grid; place-items:center; margin-bottom:14px; }
+    .nh-benefit__icon svg { width:26px; height:26px; display:block; stroke:var(--gold-1); }
+    .nh-benefit h3 { margin:1.2rem 0 .5rem; }
+    .nh-benefit p { margin:.25rem 0 0; }
 
-/* Divider */
-.divider{
-  height:1px;
-  background:linear-gradient(to right, transparent, rgba(212,175,55,0.45), transparent);
-  margin:36px 0 26px;
-  border:0;
-}
+    /* =========================
+       9) TRANSFORM SLAB
+       ========================= */
+    .nh-transform { background:radial-gradient(900px 500px at 15% 30%, rgba(0,0,0,.04), transparent 60%), linear-gradient(135deg, #FCFAF8 0%, #ECE1D9 100%); color:var(--text); padding:clamp(56px,8vw,96px) 0; }
+    .nh-transform .nh-wrap { max-width:var(--wrap); }
+    .nh-transform__grid { display:grid; grid-template-columns:0.9fr 0.85fr; align-items:center; gap:clamp(20px,4vw,80px); grid-template-areas:"media copy"; }
+    .nh-transform__media { grid-area:media; aspect-ratio:1/1; margin:0; }
+    .nh-transform__media img { width:100%; }
+    .nh-transform__copy { grid-area:copy; }
+    .nh-transform__eyebrow { display:none; }
+    .nh-transform__lead { max-width:60ch; }
+    .nh-transform__cta { display:inline-flex; }
+    .nh-transform__title { margin:0; }
 
-/* Problem Section */
-.problem{
-  border-radius:20px;
-  padding:72px 0;
-  text-align:center;
-}
-.heading-2{
-  margin:0 0 12px;
-  font-size:clamp(22px,4.4vw,32px);
-  line-height:1.25;
-  padding-bottom:6px;
-}
-.problem .lead{
-  color:#d9d9d9;
-  max-width:70ch;
-  margin:0 auto;
-  font-size:1.05rem;
-  padding-bottom:18px;
-}
-/* Icon ring */
-.emo{
-  display:grid;
-  place-items:center;
-  width:42px;height:42px;
-  border-radius:12px;
-  background: radial-gradient(120% 120% at 30% 20%, rgba(212,175,55,0.18), rgba(212,175,55,0.06));
-  border:1px solid rgba(212,175,55,0.35);
-  box-shadow: inset 0 0 18px rgba(212,175,55,0.12);
-  flex-shrink:0;
-}
-.emo img{
-  width:22px;height:22px;object-fit:contain;display:block;
-  filter: drop-shadow(0 0 2px rgba(212,175,55,0.25));
-}
+    /* =========================
+       10) SCROLL ANIMATIONS
+       ========================= */
+    .nh-reveal { opacity:0; transform:translate3d(0,24px,0); transition:opacity .7s ease, transform .7s ease; will-change:opacity, transform; }
+    .nh-reveal.is-visible { opacity:1; transform:translate3d(0,0,0); }
+    .nh-reveal-stagger > * { opacity:0; transform:translate3d(0,18px,0); transition:opacity .6s ease, transform .6s ease; }
+    .nh-reveal-stagger.is-visible > * { opacity:1; transform:none; }
+    .nh-reveal-stagger.is-visible > *:nth-child(1) { transition-delay:.05s; }
+    .nh-reveal-stagger.is-visible > *:nth-child(2) { transition-delay:.12s; }
+    .nh-reveal-stagger.is-visible > *:nth-child(3) { transition-delay:.18s; }
+    .nh-reveal-stagger.is-visible > *:nth-child(4) { transition-delay:.24s; }
+    .nh-reveal-stagger.is-visible > *:nth-child(5) { transition-delay:.30s; }
+    .nh-reveal-stagger.is-visible > *:nth-child(6) { transition-delay:.36s; }
+    @media (prefers-reduced-motion:reduce) {
+      .nh-reveal,
+      .nh-reveal-stagger > * { transition:none!important; transform:none!important; opacity:1!important; }
+    }
 
-/* Pain Points */
-.points{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
-  margin-top:18px;
-  text-align:left;
-}
-@media (max-width:720px){ .points{grid-template-columns:1fr} }
-/* Card */
-.point{
-  display:flex;
-  gap:14px;
-  align-items:flex-start;
-  background: rgba(255,255,255,0.02);
-  border:1px solid rgba(212,175,55,.22);
-  border-radius:16px;
-  padding:18px 16px;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
-}
-.point:hover{
-  transform: translateY(-4px);
-  border-color: rgba(212,175,55,0.45);
-  background: rgba(255,255,255,0.04);
-  box-shadow: 0 12px 40px rgba(212,175,55,0.12);
-}
+    /* =========================
+       12) PROJECTS GRID
+       ========================= */
+    .nh-projects { padding:clamp(56px,8vw,96px) 0; background:#fff; color:var(--text); }
+    .nh-projects .nh-wrap { max-width:var(--wrap); }
+    .nh-projects__title { text-align:center; margin:0 0 clamp(28px,4vw,44px); }
+    .nh-projects__title em { color:#664833; font-style:italic; font-weight:600; }
+    .nh-projects__grid { display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(16px,2.8vw,24px); }
+    .nh-project { position:relative; overflow:hidden; background:#EDEAE7; display:grid; grid-template-rows:1fr auto; min-height:240px; cursor:zoom-in; }
+    .nh-project__media { aspect-ratio:16/10; background:#dcd6d0; overflow:hidden; }
+    .nh-project__media img { width:100%; height:100%; object-fit:cover; transform:scale(1); transform-origin:center center; transition:transform .45s cubic-bezier(.2,.7,.2,1); will-change:transform; }
+    .nh-project__label { position:absolute; left:0; right:0; bottom:0; background:rgba(68,48,34,.85); color:#fff; display:flex; justify-content:space-between; align-items:center; padding:14px 20px; font-weight:500; letter-spacing:.2px; }
+    .nh-project__label img { height:20px; width:auto; display:block; }
+    .nh-project:hover .nh-project__media img,
+    .nh-project:focus-within .nh-project__media img { transform:scale(1.06); }
+    @media (prefers-reduced-motion:reduce) {
+      .nh-project__media img { transition:none!important; transform:none!important; }
+    }
 
-.point .emo{font-size:1.2rem;line-height:1}
-.point .tt{font-weight:700;color:#fff}
-.point p{margin:2px 0 0;color:#cfcfcf}
-/* Subtle stagger on appear (optional) */
-@keyframes fadeRise {
-  from { opacity:0; transform: translateY(6px); }
-  to   { opacity:1; transform: translateY(0);  }
-}
-.points .point { animation: fadeRise .5s ease both; }
-.points .point:nth-child(2){ animation-delay: .05s;}
-.points .point:nth-child(3){ animation-delay: .10s;}
-.points .point:nth-child(4){ animation-delay: .15s;}
-.points .point:nth-child(5){ animation-delay: .20s;}
-.points .point:nth-child(6){ animation-delay: .25s;}
-/* Cards */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media (max-width:900px){ .grid{grid-template-columns:1fr 1fr} }
-@media (max-width:640px){ .grid{grid-template-columns:1fr} }
-.card{
-  background:#0f0f0f;
-  border:1px solid rgba(212,175,55,0.25);
-  border-radius:18px;
-  padding:22px;
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-  position:relative; /* needed for badge and effects on featured card */
-  overflow:hidden;   /* clip shimmer effects on featured card */
-}
-.card:hover{
-  transform: translateY(-4px);
-  box-shadow:0 16px 40px rgba(212,175,55,0.10);
-  border-color:rgba(212,175,55,0.5);
-}
-.card h3{margin:0;font-size:1.25rem;letter-spacing:.02em}
-.muted{color:#bfbfbf; font-weight: 600;}
-.price{margin-top:6px;font-weight:700;font-size:1.4rem;color:var(--gold)}
-.subtle{color:#cfcfcf;font-size:.95rem; }
-ul.features{padding-left:18px;margin:6px 0 0}
-ul.features li{margin:6px 0;color:#d9d9d9}
+    /* =========================
+       14) PRICING
+       ========================= */
+    .nh-pricing { padding:clamp(56px,8vw,96px) 0; background:linear-gradient(180deg,#fff 0%, #FBF7F2 100%); color:var(--text); }
+    .nh-pricing .nh-wrap { max-width:var(--wrap); }
+    .nh-pricing__eyebrow { letter-spacing:.06em; text-transform:uppercase; color:#7b685a; font-weight:600; font-size:.9rem; margin:0 0 8px; text-align:center; }
+    .nh-pricing__title { margin:0 0 clamp(24px,3vw,36px); text-align:left; max-width:700px; }
+    .nh-pricing__grid { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(16px,2.8vw,26px); align-items:stretch; }
 
-/* === FEATURED / GOLDEN HIVE CARD EFFECTS === */
-.card.featured{
-  border-color: rgba(226,199,102,0.75);
-  box-shadow: 0 16px 60px rgba(226,199,102,0.18);
-  background:
-    linear-gradient(180deg, rgba(212,175,55,0.12), rgba(212,175,55,0.03)),
-    #0e0e0e;
-}
-.card.featured::before{
-  /* sweep like hero */
-  content:"";
-  position:absolute;
-  inset:-60% -70%;
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(226,199,102,0.08) 38%,
-    rgba(226,199,102,0.22) 50%,
-    rgba(226,199,102,0.08) 62%,
-    transparent 100%
-  );
-  transform: translateX(-60%) rotate(8deg);
-  animation: hero-sweep 6.5s linear infinite;
-  z-index:0;
-  pointer-events:none;
-}
-.card.featured::after{
-  /* twinkles like hero */
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
-  background-image:
-    radial-gradient(2px 2px at 12% 22%, rgba(226,199,102,0.9), rgba(226,199,102,0) 55%),
-    radial-gradient(2px 2px at 78% 30%, rgba(226,199,102,0.8), rgba(226,199,102,0) 55%),
-    radial-gradient(1.6px 1.6px at 32% 68%, rgba(212,175,55,0.85), rgba(212,175,55,0) 55%),
-    radial-gradient(1.8px 1.8px at 60% 80%, rgba(226,199,102,0.85), rgba(226,199,102,0) 55%);
-  animation: hero-twinkle 3.8s ease-in-out infinite;
-  opacity:.6;
-  filter: drop-shadow(0 0 2px rgba(212,175,55,0.25));
-}
-/* keep content above shimmer layers */
-.card.featured > *{ position:relative; z-index:1; }
+    .nh-price-card { background:#fff; border:1px solid rgb(244, 237, 232); box-shadow:0 6px 20px rgba(0,0,0,.06); padding:28px 24px; display:flex; flex-direction:column; transition:transform .3s ease, box-shadow .3s ease; }
+    .nh-price-card:hover,
+    .nh-price-card:focus-within { transform:scale(1.03); box-shadow:0 12px 28px rgba(0,0,0,.12); }
+    .nh-price-card--featured { background:linear-gradient(180deg, #4c3321 0%, #3b2717 100%); color:#f6efe8; border-color:transparent; box-shadow:0 22px 40px rgba(59,39,23,.35); }
+    .nh-price-card__eyebrow { display:flex; align-items:center; gap:10px; color:#8a6b55; font-weight:700; margin:0 0 8px; }
+    .nh-price-card__eyebrow img { width:50px; }
+    .nh-price-card--featured .nh-price-card__eyebrow { color:#f3d776; }
+    .nh-price-card__title { font-family:var(--font-display); font-size:1.4rem; margin:.2rem 0 0; }
+    .nh-price-card__desc { color:#6b5546; margin:.25rem 0 1rem; font-size:.98rem; }
+    .nh-price-card--featured .nh-price-card__desc { color:#e8dacb; }
+    .nh-price { font-family:var(--font-display); font-size:2rem; font-weight:600; margin:.25rem 0 1rem; }
+    .nh-price--white { color:#fff; }
+    .nh-price small { font-weight:500; font-size:1rem; color:#7a6759; margin-right:4px; margin-top:-4px; }
+    .nh-price-card--featured .nh-price small { color:#e9d7bf; }
+    .nh-badge { margin-left:auto; font-size:.78rem; padding:6px 10px; border-radius:999px; background:linear-gradient(105deg, var(--gold-1), var(--gold-2) 45%, var(--gold-3)); color:#2a1b0d; font-weight:700; }
+    ul.nh-features { list-style:none; padding:0; margin:14px 0 22px; display:grid; gap:10px; }
+    .nh-features li { display:grid; grid-template-columns:24px 1fr; gap:10px; align-items:start; }
+    .nh-feature__icon { width:24px; height:24px; border-radius:999px; background:#efe6de; display:grid; place-items:center; color:#7a5b44; font-weight:800; }
+    .nh-price-card--featured .nh-feature__icon { background:rgba(255,255,255,.12); color:#f3d776; }
+    .nh-price-card .nh-btn { margin-top:auto; }
+    .nh-price-card--featured .nh-btn { text-align:center; }
 
-/* "Most Popular" badge */
-.badge{
-  position:absolute;
-  top:12px; right:12px;
-  background: linear-gradient(180deg, var(--gold), var(--gold-2));
-  color:#111;
-  font-weight:800;
-  font-size:.72rem;
-  letter-spacing:.06em;
-  padding:6px 10px;
-  border-radius:999px;
-  border:1px solid rgba(0,0,0,0.12);
-  box-shadow: 0 6px 16px rgba(212,175,55,0.25);
-}
+    /* =========================
+       11) RESPONSIVE
+       ========================= */
+    @media (max-width:980px) {
+      .nh-hero__grid { grid-template-columns:1fr; min-height:65vh; }
+      .nh-portrait { margin:0 auto; }
+      .nh-nav { flex-wrap:wrap; row-gap:8px; padding:10px clamp(16px,3vw,24px); }
+      .nh-nav__links { flex:1 1 100%; display:flex; justify-content:space-between; gap:14px; }
+      .nh-banner-image { display:none; }
+      .nh-wrap { padding:0 16px; }
+      .nh-projects__grid { grid-template-columns:1fr 1fr; }
+      .nh-pricing__grid { grid-template-columns:1fr; }
+      .nh-price-card--featured { order:0; }
+    }
+    @media (max-width:720px) {
+      .nh-transform__grid { grid-template-columns:1fr; grid-template-areas:"copy""media"; text-align:left; }
+      .nh-transform__media { max-width:100%; margin-top:20px; }
 
-/* Button variant for dark-on-gold (keeps same look) */
-.card.featured .btn{
-  background:linear-gradient(180deg, var(--gold), var(--gold-2));
-  color:#111;
-}
-/* --- Pricing layout improvements --- */
-.pricing {
-  margin-top: 12px;
-}
+      .nh-nav__toggle { display:inline-flex; position:relative; width:40px; height:40px; background:none; border:none; color:#fff; align-items:center; justify-content:center; cursor:pointer; z-index:3; }
+      .nh-nav__burger,
+      .nh-nav__burger::before,
+      .nh-nav__burger::after { content:""; display:block; width:20px; height:2px; background:#f6efe8; position:absolute; transition:transform .2s ease, opacity .2s ease, background .2s ease; }
+      .nh-nav__burger { transform:translateY(0); }
+      .nh-nav__burger::before { transform:translateY(-6px); }
+      .nh-nav__burger::after { transform:translateY(6px); }
 
-/* make all cards consistent height and spacing */
-.card {
-  display:flex;
-  flex-direction:column;
-  min-height: 100%;
-}
+      .nh-nav.is-open .nh-nav__burger { background:transparent; }
+      .nh-nav.is-open .nh-nav__burger::before { transform:translateY(0) rotate(45deg); }
+      .nh-nav.is-open .nh-nav__burger::after { transform:translateY(0) rotate(-45deg); }
 
-/* tighten headings + intro copy */
-.card h3 { margin: 0 0 6px; }
-.card .muted {
-  margin: 0;
-  color: #cfcfcf;
-}
-.card .subtle {
-  color:#bbb;
-  font-size:.95rem;
-  margin: 0;
-}
+      .nh-nav__links { position:absolute; top:100%; left:0; right:0; display:flex; flex-direction:column; gap:12px; padding:16px clamp(16px,4vw,24px); background:rgba(24,16,10,.78); backdrop-filter:saturate(140%) blur(10px); border-bottom:1px solid rgba(255,255,255,.08); transform-origin:top; transform:scaleY(0); opacity:0; pointer-events:none; transition:transform .18s ease, opacity .18s ease; z-index:1; }
+      .nh-nav.is-open .nh-nav__links { transform:scaleY(1); opacity:1; pointer-events:auto; }
 
-/* Price row with better hierarchy */
-.price-row {
-  display:flex;
-  align-items:baseline;
-  gap:10px;
-  margin: 6px 0 10px;
-}
-.price-tag {
-  display:inline-flex;
-  align-items:baseline;
-  gap:6px;
-}
-.price-tag .label {
-  color:#bdbdbd;
-  font-size:.85rem;
-  letter-spacing:.04em;
-  text-transform:uppercase;
-}
-.price-tag .amount {
-  color: var(--gold);
-  font-weight:800;
-  font-size:1.6rem;
-  letter-spacing:.02em;
-}
-.price-tag .period {
-  color:#bdbdbd;
-  font-size:.9rem;
-}
+      .nh-nav__links a { padding:8px 0; display:block; }
+      .nh-nav__links .nh-btn { padding:12px 16px; }
+      .nh-nav__links .nh-btn.nh-btn--outline { line-height:1.1; }
 
-.features {
-  list-style: none;
-  margin: 8px 0 0;
-  padding-left: 0 !important;   /* 🔥 remove default browser padding */
-  display: grid;
-  gap: 6px;
-}
-.features li {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  color: #e5e5e5;
-  font-size: .95rem;
-  line-height: 1.4;
-  margin: 4px 0 !important;
-}
-.features li img {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-}
+      .nh-projects__grid { grid-template-columns:1fr; }
+    }
 
+    /* =========================
+       13) PROJECT MODAL
+       ========================= */
+    body.modal-open { overflow:hidden; }
+    .nh-modal { position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.7); backdrop-filter:blur(2px); z-index:2000; }
+    .nh-modal.is-open { display:flex; }
+    .nh-modal__dialog { position:relative; max-width:min(92vw, 1200px); max-height:92vh; outline:none; }
+    .nh-modal__img { max-width:100%; max-height:92vh; object-fit:contain; box-shadow:0 12px 36px rgba(0,0,0,.5); background:#111; }
+    .nh-modal__close { position:absolute; top:10px; right:10px; border:0; background:rgba(0,0,0,.55); color:#fff; width:40px; height:40px; cursor:pointer; display:grid; place-items:center; font-size:24px; line-height:1; transition:background .2s ease, transform .12s ease; }
+    .nh-modal__close:hover { background:rgba(0,0,0,.75); transform:translateY(-1px); }
+    .nh-modal__close:active { transform:scale(.98); }
+    .nh-project[role="button"] { outline:none; }
 
+    /* =========================
+       15) CTA SLAB
+       ========================= */
+    .nh-cta-slab {
+      padding:clamp(56px,8vw,100px) 0;
+      background:
+        radial-gradient(900px 420px at 18% 0%, rgba(243,215,118,.10), transparent 60%),
+        linear-gradient(135deg, #FAF8F6 0%, #EFE3D9 100%);
+      color:var(--text);
+      text-align:center;
+    }
+    .nh-cta-slab__title { max-width:700px; margin:0 auto; }
+    .nh-cta-slab__desc { max-width:700px; margin:16px auto 48px; height:auto; }
 
-/* spacing before CTA */
-.card .cta-area {
-  margin-top:auto;
-  display:flex;
-  gap:10px;
-  align-items:center;
-}
+    /* =========================
+       16) DARK FOOTER
+       ========================= */
+    .nh-site-footer {
+      background:#2a1b0d;
+      background-image:
+        radial-gradient(900px 380px at 20% 0%, rgba(243,215,118,.08), transparent 65%),
+        linear-gradient(180deg, #3b2717 0%, #2a1b0d 100%);
+      color:#f6efe8;
+      padding:40px 0 48px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    .nh-site-footer .nh-wrap { max-width:var(--wrap); }
+    .nh-footer__top { display:flex; align-items:center; justify-content:space-between; gap:20px; margin-bottom:18px; }
+    .nh-footer__brand img { height:32px; width:auto; display:block; }
+    .nh-footer__nav { display:flex; gap:20px; flex-wrap:wrap; }
+    .nh-footer__nav a { color:#e2d6c8; font-weight:500; letter-spacing:.2px; position:relative; transition:color .25s ease; }
+    .nh-footer__nav a:hover,
+    .nh-footer__nav a:focus-visible { color:var(--gold-2); }
+    .nh-footer__bottom { display:flex; align-items:center; justify-content:space-between; gap:16px; border-top:1px solid rgba(255,255,255,.18); padding-top:18px; font-size:.95rem; color:#f6efe8; }
+    .nh-footer__copy,
+    .nh-footer__credit { margin:0; color:#57493F; }
 
-.card .cta-area a {
-  width: 100%;
-  text-align: center;
-}
-/* small footnotes / disclaimers if needed */
-.note {
-  margin-top:10px;
-  font-size:.85rem;
-  color:#a9a9a9;
-}
-
-/* Featured card header row */
-.card-header {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  margin-bottom: 6px;
-}
-.card-header h3 { margin:0; }
-
-/* Glass outlined badge (right of title) */
-.card-header .badge{
-  position: static;
-  background: rgba(255,255,255,0.06);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  color: var(--gold);
-  font-weight:700;
-  font-size:.72rem;
-  letter-spacing:.06em;
-  padding:6px 12px;
-  border-radius:999px;
-  border:1px solid var(--gold);
-  box-shadow: 0 2px 8px rgba(212,175,55,0.2);
-  text-transform:uppercase;
-  white-space:nowrap;
-}
-
-/* Secondary button (refined premium style) */
-.btn-secondary {
-  margin-top: 0;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
-  border-radius: 12px;
-  font-weight: 700;
-  letter-spacing: .02em;
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  color: var(--gold);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: all .3s ease;
-}
-
-/* subtle gradient overlay for glass depth */
-.btn-secondary::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.08),
-    rgba(255, 255, 255, 0)
-  );
-  opacity: 0.25;
-  pointer-events: none;
-  border-radius: inherit;
-}
-
-/* Hover: shimmer + subtle lift */
-.btn-secondary:hover {
-  background: rgba(212, 175, 55, 0.1);
-  border-color: var(--gold);
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.15);
-}
-
-/* Active: press down */
-.btn-secondary:active {
-  transform: translateY(1px) scale(0.98);
-  box-shadow: 0 3px 8px rgba(212, 175, 55, 0.1);
-}
-
-
-/* Slight emphasis for featured CTA spacing */
-.card.featured .cta-area { margin-top: 14px; }
-
-
-/* Footer */
-.footer{margin-top:36px;color:#b8b8b8;font-size:.9rem;text-align:center}
-.accent{color:var(--gold)}
-
-/* Ensure hero content above sparkles */
-.hero > *{ position:relative; z-index:1; }
-</style>
-
+    @media (max-width:720px) {
+      .nh-footer__top { flex-direction:column; align-items:flex-start; gap:16px; }
+      .nh-footer__bottom { flex-direction:column; align-items:flex-start; gap:8px; }
+    }
+  </style>
 </head>
+
 <body>
-  <div class="container">
-   
-    <div class="hero">
-      <span class="brand">FOR PREMIUM WELLNESS & MEDICAL BRANDS</span>
-      <h1 style="margin-bottom:16px">
-          <span class="accent shimmer">Premium</span> Websites for Premium Experts
-      </h1>
-      <p style="margin-bottom:28px">
-          Your expertise is world-class — your website should be too. In just 7 days, we redesign outdated sites into sleek,
-          trust-building platforms that reflect your true value and attract more clients.
-      </p>
-      <a href="/get-started" class="btn">Book a Discovery Call</a>
+  <!-- =========================
+       HEADER / HERO
+       ========================= -->
+  <header class="nh-hero">
+    <div class="nh-nav-wrap">
+      <nav class="nh-nav" role="navigation" aria-label="Primary">
+        <a class="nh-brand" href="#">
+          <img src="{{ asset('images/neyhive/logo.svg') }}" alt="Logo" />
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button class="nh-nav__toggle" aria-expanded="false" aria-controls="primary-links" aria-label="Open menu">
+          <span class="nh-nav__burger"></span>
+        </button>
+
+        <!-- Links -->
+        <div id="primary-links" class="nh-nav__links">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#services">Services</a>
+          <a class="nh-btn nh-btn--outline" href="https://calendly.com/neyhivedesigns/30min">Book a call</a>
+        </div>
+      </nav>
     </div>
 
-    <!-- Pain Points section -->
-   <!-- Pain Points section -->
-<section class="problem" aria-labelledby="prob-h">
-  <h2 id="prob-h" class="heading-2">
-    A Poor Website = <span class="accent shimmer">Lost Trust</span>, Lost Clients, Lost Revenue.
-  </h2>
-  <div class="gold-divider" aria-hidden="true"></div>
+    <div class="nh-wrap">
+      <section class="nh-hero__grid">
+        <div class="nh-hero__copy nh-reveal">
+          <h1>Redesign for</h1>
+          <div class="nh-accent-row">
+            <span class="nh-accent">success</span>
+            <span class="nh-arrow"><img src="/images/neyhive/arrow.svg" alt="" /></span>
+          </div>
+          <p class="nh-lead">Transforming outdated, cluttered websites into modern, user-friendly, and high-performing designs for growing brands.</p>
+          <div class="nh-cta-row">
+            <a class="nh-btn nh-btn--gold" href="https://calendly.com/neyhivedesigns/30min">Book a Discovery Call</a>
+          </div>
+        </div>
 
-  <p class="lead">
-    Do any of these sound familiar? Even the best wellness and medical services get overlooked if the website feels confusing,
-    outdated, or difficult to use.
-  </p>
-
-  <div class="points" role="list">
-    <div class="point" role="listitem">
-      <div class="emo" aria-hidden="true">
-        <img src="{{ asset('images/pain-1.svg') }}" alt="">
-      </div>
-      <div>
-        <div class="tt">Cluttered Navigation</div>
-        <p>High-value clients can’t quickly understand your services or how to book — leading to missed bookings and frustration.</p>
-      </div>
+        <div class="nh-banner-image nh-reveal" style="transition-delay:.15s">
+          <img class="nh-portrait" src="/images/neyhive/majel.webp" alt="Smiling designer in a white blazer" />
+        </div>
+      </section>
     </div>
-
-    <div class="point" role="listitem">
-      <div class="emo" aria-hidden="true">
-        <img src="{{ asset('images/pain-2.svg') }}" alt="">
-      </div>
-      <div>
-        <div class="tt">Complicated Booking</div>
-        <p>Every extra click or broken form means fewer consultations and lost appointments.</p>
-      </div>
-    </div>
-
-    <div class="point" role="listitem">
-      <div class="emo" aria-hidden="true">
-        <img src="{{ asset('images/pain-3.svg') }}" alt="">
-      </div>
-      <div>
-        <div class="tt">Outdated &amp; Untrustworthy Design</div>
-        <p>An outdated site makes premium treatments look cheap and drives clients to competitors.</p>
-      </div>
-    </div>
-
-    <div class="point" role="listitem">
-      <div class="emo" aria-hidden="true">
-        <img src="{{ asset('images/pain-4.svg') }}" alt="">
-      </div>
-      <div>
-        <div class="tt">Missing Empathy &amp; Trust Signals</div>
-        <p>Without testimonials, clear messaging, or strong visuals, patients don’t feel confident choosing you.</p>
-      </div>
-    </div>
-
-    <div class="point" role="listitem">
-      <div class="emo" aria-hidden="true">
-        <img src="{{ asset('images/pain-5.svg') }}" alt="">
-      </div>
-      <div>
-        <div class="tt">Slow &amp; Non-Mobile-Friendly</div>
-        <p>Affluent clients browse on mobile first — if your site is clunky or slow, they leave instantly.</p>
-      </div>
-    </div>
-
-    <div class="point" role="listitem">
-      <div class="emo" aria-hidden="true">
-        <img src="{{ asset('images/pain-6.svg') }}" alt="">
-      </div>
-      <div>
-        <div class="tt">Accessibility &amp; Transparency Gaps</div>
-        <p>Excluding seniors, busy professionals, or lacking data-privacy signals creates red flags and lost trust.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-    <hr class="divider" />
-<!-- Pricing grid -->
-<section class="pricing" aria-label="Pricing packages">
-
-  <!-- Section Heading -->
-  <header class="pricing-header" style="text-align:center; margin-bottom:36px;">
-    <h2 style="font-size:clamp(26px,5vw,36px); margin:0 0 12px;">
-      The <span class="accent shimmer">Hive Tiers</span> of Growth
-    </h2>
-    <p style="max-width:60ch; margin:0 auto; color:#cfcfcf; font-size:1.05rem;">
-      From building your foundation to complete transformation, our tiers are crafted for 
-      premium wellness and medical experts who demand digital authority.
-    </p>
   </header>
 
-  <div class="grid">
-    <!-- Hive Foundation -->
-    <article class="card" aria-labelledby="pkg-foundation">
-      <h3 id="pkg-foundation">Hive Foundation</h3>
-      <p class="muted">Establish your digital authority.</p>
-      <p class="subtle">Fast, premium refresh for established experts.</p>
-
-      <div class="price-row" aria-label="Starting price">
-        <div class="price-tag">
-          <span class="label">Starting at</span>
-          <span class="amount" aria-live="polite">$10,000</span>
+  <!-- =========================
+       MAIN
+       ========================= -->
+  <main>
+    <!-- Problem/Solution (Compare) -->
+    <section id="compare" class="nh-compare">
+      <div class="nh-wrap nh-reveal">
+        <h2>Is Your <em>Website</em> Outdated and<br />Not Converting?</h2>
+        <div class="nh-ps-image">
+          <img src="/images/neyhive/problem-solution.webp" alt="Problem vs Solution comparison" />
         </div>
       </div>
+    </section>
 
-      <ul class="features" role="list">
-        <li><img src="/images/icon-check.svg" alt="">Premium redesign of up to 5 core pages</li>
-        <li><img src="/images/icon-check.svg" alt="">1-week delivery window</li>
-        <li><img src="/images/icon-check.svg" alt="">Trust-focused UI/UX, mobile-responsive</li>
-        <li><img src="/images/icon-check.svg" alt="">Clean booking & contact flow</li>
-      </ul>
+    <!-- Benefits -->
+    <section id="benefits" class="nh-benefits" aria-labelledby="benefits-title">
+      <div class="nh-wrap">
+        <header class="nh-benefits__header nh-reveal">
+          <h2 id="benefits-title" class="nh-benefits__title">
+            Because Every Successful Brand
+            Deserves a <em>Better Design</em>
+          </h2>
+          <p class="nh-benefits__kicker">What your redesign includes — built to grow your brand.</p>
+        </header>
 
-      <div class="cta-area">
-        <a href="/get-started" class="btn-secondary" aria-label="Start Hive Foundation package">Build My Foundation</a>
-      </div>
-    </article>
+        <div class="nh-benefits__grid nh-reveal-stagger">
+          <!-- 1 -->
+          <article class="nh-benefit">
+            <div class="nh-benefit__icon" aria-hidden="true">
+              <img src="{{ asset('images/neyhive/benefit-1.svg') }}" alt="Logo" />
+            </div>
+            <div class="nh-benefit__text">
+              <h3>Custom Website Redesign</h3>
+              <p>I redesign your website with a custom look that aligns with your brand and goals.</p>
+            </div>
+          </article>
 
-    <!-- Golden Hive (FEATURED) -->
-    <article class="card featured" aria-labelledby="pkg-golden">
-      <div class="card-header">
-        <h3 id="pkg-golden">Golden Hive</h3>
-        <div class="badge" aria-label="Most Popular">Most Popular</div>
-      </div>
-      <p class="muted">Your complete digital transformation.</p>
-      <p class="subtle">Premium, done-for-you redesign and relaunch.</p>
+          <!-- 2 -->
+          <article class="nh-benefit">
+            <div class="nh-benefit__icon" aria-hidden="true">
+              <img src="{{ asset('images/neyhive/benefit-2.svg') }}" alt="Logo" />
+            </div>
+            <div class="nh-benefit__text">
+              <h3>Best User Experience</h3>
+              <p>I craft seamless user experiences that feel effortless and keep visitors engaged.</p>
+            </div>
+          </article>
 
-      <div class="price-row" aria-label="Starting price">
-        <div class="price-tag">
-          <span class="label">Starting at</span>
-          <span class="amount" aria-live="polite">$18,000</span>
+          <!-- 3 -->
+          <article class="nh-benefit">
+            <div class="nh-benefit__icon" aria-hidden="true">
+              <img src="{{ asset('images/neyhive/benefit-3.svg') }}" alt="Logo" />
+            </div>
+            <div class="nh-benefit__text">
+              <h3>Conversion-Focused</h3>
+              <p>I design pages that guide visitors to take action and boost conversions.</p>
+            </div>
+          </article>
+
+          <!-- 4 -->
+          <article class="nh-benefit">
+            <div class="nh-benefit__icon" aria-hidden="true">
+              <img src="{{ asset('images/neyhive/benefit-4.svg') }}" alt="Logo" />
+            </div>
+            <div class="nh-benefit__text">
+              <h3>Mobile-Responsive</h3>
+              <p>I ensure your website looks and works flawlessly on all screen sizes.</p>
+            </div>
+          </article>
+
+          <!-- 5 -->
+          <article class="nh-benefit">
+            <div class="nh-benefit__icon" aria-hidden="true">
+              <img src="{{ asset('images/neyhive/benefit-5.svg') }}" alt="Logo" />
+            </div>
+            <div class="nh-benefit__text">
+              <h3>SEO-Friendly</h3>
+              <p>I redesign with clean structure to help your site rank better on search engines.</p>
+            </div>
+          </article>
+
+          <!-- 6 -->
+          <article class="nh-benefit">
+            <div class="nh-benefit__icon" aria-hidden="true">
+              <img src="{{ asset('images/neyhive/benefit-6.svg') }}" alt="Logo" />
+            </div>
+            <div class="nh-benefit__text">
+              <h3>Brand Alignment</h3>
+              <p>I create designs that consistently reflect your brand’s voice, style, and identity.</p>
+            </div>
+          </article>
         </div>
       </div>
+    </section>
 
-      <ul class="features" role="list">
-        <li><img src="/images/icon-check.svg" alt="">Full redesign of up to 12 pages</li>
-        <li><img src="/images/icon-check.svg" alt="">Design and development (WordPress, Webflow, or custom)</li>
-        <li><img src="/images/icon-check.svg" alt="">Conversion-focused patient journey</li>
-        <li><img src="/images/icon-check.svg" alt="">SEO-ready structure + analytics setup</li>
-        <li><img src="/images/icon-check.svg" alt="">Accessibility & performance testing</li>
-        <li><img src="/images/icon-check.svg" alt="">Priority launch support</li>
-      </ul>
+    <!-- Transform CTA -->
+    <section id="transform" class="nh-transform" aria-labelledby="transform-title">
+      <div class="nh-wrap">
+        <div class="nh-transform__grid">
+          <figure class="nh-transform__media nh-reveal">
+            <img src="/images/neyhive/majel-2.webp" alt="Designer presenting a laptop" />
+          </figure>
 
-      <div class="cta-area">
-        <a href="/get-started" class="btn" aria-label="Choose Golden Hive package">Transform My Website</a>
-      </div>
-    </article>
-
-    <!-- Hive Growth Partnership -->
-    <article class="card" aria-labelledby="pkg-growth">
-      <h3 id="pkg-growth">Hive Growth Partnership</h3>
-      <p class="muted">Your long-term digital partner.</p>
-      <p class="subtle">Continuous optimization and peace of mind.</p>
-
-      <div class="price-row" aria-label="Monthly price">
-        <div class="price-tag">
-          <span class="label">From</span>
-          <span class="amount" aria-live="polite">$3,500</span>
-          <span class="period">/ month</span>
+          <div class="nh-transform__copy nh-reveal" style="transition-delay:.12s">
+            <h2 id="transform-title" class="nh-transform__title">
+              I Help Growing Brands<br /><em>Transform</em> Their Websites
+            </h2>
+            <p class="nh-transform__lead">
+              Your website should do more than exist — it should impress, connect, and convert.
+              I redesign outdated sites into modern, high-impact platforms that elevate your brand and grow your business.
+            </p>
+            <div class="nh-transform__cta">
+              <a class="nh-btn nh-btn--coffee" href="https://calendly.com/neyhivedesigns/30min">Book a Discovery Call</a>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <ul class="features" role="list">
-        <li><img src="/images/icon-check.svg" alt="">Monthly updates & enhancements</li>
-        <li><img src="/images/icon-check.svg" alt="">UX & conversion optimization</li>
-        <li><img src="/images/icon-check.svg" alt="">Analytics reporting + insights</li>
-        <li><img src="/images/icon-check.svg" alt="">New content or landing page additions</li>
-        <li><img src="/images/icon-check.svg" alt="">Priority support & quarterly strategy</li>
-      </ul>
+    <!-- Tailored Projects -->
+    <section id="projects" class="nh-projects" aria-labelledby="projects-title">
+      <div class="nh-wrap">
+        <h2 id="projects-title" class="nh-projects__title"><em>Tailored</em> for Brands Like Yours</h2>
 
-      <div class="cta-area">
-        <a href="/get-started" class="btn-secondary" aria-label="Start Hive Growth Partnership">Keep My Hive Growing</a>
+        <div class="nh-projects__grid nh-reveal-stagger">
+          <!-- 1 -->
+          <article class="nh-project">
+            <div class="nh-project__media" aria-hidden="true">
+              <img src="/images/neyhive/portfolio-1.webp" alt="Modern Brand Website preview" />
+            </div>
+            <div class="nh-project__label"><span>Modern Brand Website</span><span aria-hidden="true"><img src="/images/neyhive/right-arrow.svg" alt="" /></span></div>
+          </article>
+
+          <!-- 2 -->
+          <article class="nh-project">
+            <div class="nh-project__media" aria-hidden="true">
+              <img src="/images/neyhive/portfolio-2.webp" alt="Personal Brand Website preview" />
+            </div>
+            <div class="nh-project__label"><span>Personal Brand Website</span><span aria-hidden="true"><img src="/images/neyhive/right-arrow.svg" alt="" /></span></div>
+          </article>
+
+          <!-- 3 -->
+          <article class="nh-project">
+            <div class="nh-project__media" aria-hidden="true">
+              <img src="/images/neyhive/portfolio-3.webp" alt="Garden Wedding Website preview" />
+            </div>
+            <div class="nh-project__label"><span>Garden Wedding Website</span><span aria-hidden="true"><img src="/images/neyhive/right-arrow.svg" alt="" /></span></div>
+          </article>
+
+          <!-- 4 -->
+          <article class="nh-project">
+            <div class="nh-project__media" aria-hidden="true">
+              <img src="/images/neyhive/portfolio-4.webp" alt="Educational App preview" />
+            </div>
+            <div class="nh-project__label"><span>Educational App</span><span aria-hidden="true"><img src="/images/neyhive/right-arrow.svg" alt="" /></span></div>
+          </article>
+
+          <!-- 5 -->
+          <article class="nh-project">
+            <div class="nh-project__media" aria-hidden="true">
+              <img src="/images/neyhive/portfolio-5.webp" alt="Online Booking App preview" />
+            </div>
+            <div class="nh-project__label"><span>Online Booking App</span><span aria-hidden="true"><img src="/images/neyhive/right-arrow.svg" alt="" /></span></div>
+          </article>
+
+          <!-- 6 -->
+          <article class="nh-project">
+            <div class="nh-project__media" aria-hidden="true">
+              <img src="/images/neyhive/portfolio-6.webp" alt="Online Plant Store preview" />
+            </div>
+            <div class="nh-project__label"><span>Online Plant Store</span><span aria-hidden="true"><img src="/images/neyhive/right-arrow.svg" alt="" /></span></div>
+          </article>
+        </div>
       </div>
-    </article>
-  </div>
-</section>
+    </section>
 
+    <!-- Pricing -->
+    <section id="pricing" class="nh-pricing" aria-labelledby="pricing-title">
+      <div class="nh-wrap">
+        <h2 id="pricing-title" class="nh-pricing__title"><em>Premium</em> Web Redesign Packages for Growing Brands</h2>
 
+        <div class="nh-pricing__grid nh-reveal-stagger">
+          <!-- Essentials -->
+          <article class="nh-price-card" aria-label="Essentials Package">
+            <div class="nh-price-card__eyebrow">
+              <span aria-hidden="true"><img src="/images/neyhive/package-1.svg" alt="" /></span>
+            </div>
+            <h3 class="nh-price-card__title">Hive Foundation</h3>
+            <p class="nh-price-card__desc">For businesses needing a professional redesign that builds credibility.</p>
+            <p class="nh-price"><small>Starting at </small>$3,000</p>
+            <ul class="nh-features">
+              <li><img src="/images/neyhive/check.svg" alt="" /><span>Website redesign (up to 5 core pages)</span></li>
+              <li><img src="/images/neyhive/check.svg" alt="" /><span>Mobile-responsive & performance optimized</span></li>
+              <li><img src="/images/neyhive/check.svg" alt="" /><span>Conversion-focused homepage</span></li>
+              <li><img src="/images/neyhive/check.svg" alt="" /><span>Essential SEO setup (structure, meta, sitemap)</span></li>
+            </ul>
+            <a class="nh-btn nh-btn--secondary" href="https://calendly.com/neyhivedesigns/30min">Book Your Free Consultation</a>
+          </article>
 
+          <!-- Growth (Featured) -->
+          <article class="nh-price-card nh-price-card--featured" aria-label="Growth Package">
+            <div class="nh-price-card__eyebrow">
+              <span aria-hidden="true"><img src="/images/neyhive/package-2.svg" alt="" /></span>
+              <span class="nh-badge">Most Popular</span>
+            </div>
+            <h3 class="nh-price-card__title">Golden Hive</h3>
+            <p class="nh-price-card__desc">For brands that want a growth-ready website designed to convert.</p>
+            <p class="nh-price nh-price--white"><small>Starting at </small>$7,500</p>
+            <ul class="nh-features">
+              <li><img src="/images/neyhive/check-2.svg" alt="" /><span>Website redesign (up to 12 pages)</span></li>
+              <li><img src="/images/neyhive/check-2.svg" alt="" /><span>Strategic layouts & refined messaging</span></li>
+              <li><img src="/images/neyhive/check-2.svg" alt="" /><span>Blog & content hub for authority</span></li>
+              <li><img src="/images/neyhive/check-2.svg" alt="" /><span>Custom brand-aligned visuals</span></li>
+              <li><img src="/images/neyhive/check-2.svg" alt="" /><span>30-day post-launch support</span></li>
+            </ul>
+            <a class="nh-btn nh-btn--gold" href="https://calendly.com/neyhivedesigns/30min">Start Your Growth Journey</a>
+          </article>
 
-    <div class="footer">
-      © {{ date('Y') }} Neyhive Designs • Crafted with <span class="accent">Laravel</span>
+          <!-- Scale -->
+          <article class="nh-price-card" aria-label="Scale Package">
+            <div class="nh-price-card__eyebrow">
+              <span aria-hidden="true"><img src="/images/neyhive/package-3.svg" alt="" /></span>
+            </div>
+            <h3 class="nh-price-card__title">Hive Growth Partnership</h3>
+            <p class="nh-price-card__desc">For scaling businesses who want a strategic partner, not just a redesign.</p>
+            <p class="nh-price"><small>Starting at </small>$15,000</p>
+            <ul class="nh-features">
+              <li><img src="/images/neyhive/check.svg" alt="" /><span>Complete website redesign (no page limits)</span></li>
+              <li><img src="/images/neyhive/check.svg" alt="" /><span>Conversion funnels & lead capture systems</span></li>
+              <li><img src="/images/neyhive/check.svg" alt="" /><span>Continuous optimization & A/B testing</span></li>
+              <li><img src="/images/neyhive/check.svg" alt="" /><span>Advanced integrations (CRM, automation, booking)</span></li>
+              <li><img src="/images/neyhive/check.svg" alt="" /><span>Dedicated priority support</span></li>
+            </ul>
+            <a class="nh-btn nh-btn--secondary" href="https://calendly.com/neyhivedesigns/30min">Apply for Partnership</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta" class="nh-cta-slab" aria-labelledby="cta-title">
+      <div class="nh-wrap nh-reveal">
+        <h2 id="cta-title" class="nh-cta-slab__title">Transform Your Website Into a <em>True Reflection</em> of Your Brand</h2>
+        <p class="nh-cta-slab__desc">
+          Your website should do more than exist — it should represent your brand at its best.
+          Let’s create a modern, elegant, and conversion-ready website that truly reflects who you are.
+        </p>
+        <div class="nh-cta-slab__actions">
+          <a class="nh-btn nh-btn--coffee" href="https://calendly.com/neyhivedesigns/30min">Let’s Talk About Your Website</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================
+       FOOTER
+       ========================= -->
+  <footer class="nh-site-footer" role="contentinfo">
+    <div class="nh-wrap">
+      <div class="nh-footer__top">
+        <a class="nh-brand nh-footer__brand" href="#">
+          <img src="{{ asset('images/neyhive/logo.svg') }}" alt="Neyhive Designs" />
+        </a>
+
+        <nav class="nh-footer__nav" aria-label="Footer">
+          <a href="#projects">Projects</a>
+          <a href="#benefits">Benefits</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#book">Book a Call</a>
+        </nav>
+      </div>
+
+      <div class="nh-footer__bottom">
+        <p class="nh-footer__copy">© <span id="nh-year"></span> Neyhive Designs. All rights reserved.</p>
+        <p class="nh-footer__credit">Where timeless design meets measurable growth.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================
+       SCRIPTS
+       ========================= -->
+  <script>
+    // Footer year
+    document.getElementById('nh-year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Project Image Modal -->
+  <div class="nh-modal" id="nh-project-modal" role="dialog" aria-modal="true" aria-labelledby="nh-project-modal-title">
+    <h2 id="nh-project-modal-title" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Project image preview</h2>
+    <div class="nh-modal__dialog" tabindex="-1">
+      <button class="nh-modal__close" type="button" aria-label="Close">×</button>
+      <img class="nh-modal__img" src="" alt="" />
     </div>
   </div>
+
+  <!-- Sticky nav blur + mobile toggle + reveal animations + project modal -->
+  <script>
+    (function(){
+      const wrap = document.querySelector('.nh-nav-wrap');
+      const nav = document.querySelector('.nh-nav');
+      const toggle = document.querySelector('.nh-nav__toggle');
+      const panel = document.getElementById('primary-links');
+
+      // reserve space for the fixed nav
+      const setNavOffset = () => {
+        if (!wrap) return;
+        const h = wrap.offsetHeight;
+        document.documentElement.style.setProperty('--nav-h', h + 'px');
+      };
+      const recalcAfterToggle = () => requestAnimationFrame(setNavOffset);
+      setNavOffset();
+      window.addEventListener('resize', setNavOffset, { passive:true });
+
+      // blur/tint on scroll
+      const onScroll = () => wrap && (window.scrollY > 10 ? wrap.classList.add('is-scrolled') : wrap.classList.remove('is-scrolled'));
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive:true });
+
+      // mobile menu toggle
+      if (nav && toggle && panel) {
+        const setOpen = (open) => {
+          nav.classList.toggle('is-open', open);
+          toggle.setAttribute('aria-expanded', String(open));
+        };
+        toggle.addEventListener('click', () => {
+          const open = !nav.classList.contains('is-open');
+          setOpen(open);
+          recalcAfterToggle();
+        });
+        panel.addEventListener('click', e => {
+          if (e.target.closest('a')) {
+            setOpen(false);
+            recalcAfterToggle();
+          }
+        });
+        document.addEventListener('keydown', e => {
+          if (e.key === 'Escape') {
+            setOpen(false);
+            recalcAfterToggle();
+          }
+        });
+      }
+
+      // ===== Scroll Reveal Animations =====
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReduced && 'IntersectionObserver' in window) {
+        const singles = document.querySelectorAll('.nh-reveal');
+        const staggers = document.querySelectorAll('.nh-reveal-stagger');
+
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { root:null, rootMargin:'0px 0px -10% 0px', threshold:0.15 });
+
+        singles.forEach(el => io.observe(el));
+        staggers.forEach(group => io.observe(group));
+      } else {
+        document.querySelectorAll('.nh-reveal, .nh-reveal-stagger').forEach(el => el.classList.add('is-visible'));
+      }
+
+      // ===== Project Image Modal =====
+      const modal = document.getElementById('nh-project-modal');
+      const modalDialog = modal?.querySelector('.nh-modal__dialog');
+      const modalImg = modal?.querySelector('.nh-modal__img');
+      const modalClose = modal?.querySelector('.nh-modal__close');
+      let lastActiveEl = null;
+
+      function openModal(src, alt) {
+        if (!modal || !modalImg) return;
+        modalImg.src = src;
+        modalImg.alt = alt || 'Project image';
+        modal.classList.add('is-open');
+        document.body.classList.add('modal-open');
+        lastActiveEl = document.activeElement;
+        modalDialog?.focus();
+      }
+
+      function closeModal() {
+        if (!modal || !modalImg) return;
+        modal.classList.remove('is-open');
+        document.body.classList.remove('modal-open');
+        modalImg.src = '';
+        if (lastActiveEl && typeof lastActiveEl.focus === 'function') lastActiveEl.focus();
+      }
+
+      // Click / keyboard on any project card
+      document.querySelectorAll('.nh-project').forEach(card => {
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-label', 'Open project image');
+
+        const getImage = () => {
+          const img = card.querySelector('.nh-project__media img');
+          if (img) {
+            const src = img.dataset.full || img.getAttribute('src');
+            const alt = img.getAttribute('alt') || '';
+            openModal(src, alt);
+          }
+        };
+
+        card.addEventListener('click', getImage);
+        card.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            getImage();
+          }
+        });
+      });
+
+      // Close interactions
+      modalClose?.addEventListener('click', closeModal);
+      modal?.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
+    })();
+  </script>
 </body>
 </html>
