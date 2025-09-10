@@ -6,6 +6,31 @@
   <title>Neyhive Designs</title>
   <link rel="icon" type="image/png" href="images/neyhive/favicon.png">
 
+  <!-- ===== Featured Image / SEO / Social Sharing ===== -->
+  <meta name="description" content="Transforming outdated, cluttered websites into modern, user-friendly, high-converting designs for growing brands.">
+
+  <!-- Open Graph (Facebook, LinkedIn, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Neyhive Designs">
+  <meta property="og:description" content="Transforming outdated, cluttered websites into modern, user-friendly, high-converting designs for growing brands.">
+  <meta property="og:url" content="https://neyhivedesigns.com/">
+  <meta property="og:site_name" content="Neyhive Designs">
+  <meta property="og:image" content="https://neyhivedesigns.com/images/neyhive/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Neyhive Designs">
+  <meta name="twitter:description" content="Transforming outdated, cluttered websites into modern, user-friendly, high-converting designs for growing brands.">
+  <meta name="twitter:image" content="https://neyhivedesigns.com/images/neyhive/og-cover.jpg">
+
+  <!-- Optional: Apple/Android icons -->
+  <link rel="apple-touch-icon" href="/images/neyhive/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/neyhive/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/neyhive/favicon-16.png">
+
+
   <style>
     /* =========================
        1) DESIGN TOKENS
