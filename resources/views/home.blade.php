@@ -283,6 +283,24 @@
       .nh-nav__links .nh-btn.nh-btn--outline { line-height:1.1; }
 
       .nh-projects__grid { grid-template-columns:1fr; }
+
+      .nh-benefit { padding: 20px 16px; gap: 12px; }
+  .nh-benefit__icon { width: 56px; height: 56px; }
+  .nh-benefit h3 { margin: .2rem 0 .2rem; }
+  .nh-benefit p { margin: 0; line-height: 1.5; }
+   .nh-benefits__header {
+    grid-template-columns: 1fr;   /* stack */
+    text-align: left;
+    row-gap: 16px;
+  }
+  .nh-benefits__kicker {
+    justify-self: start;          /* no right-align on narrow screens */
+    text-align: left;
+    max-width: 40ch;
+  }
+  .nh-benefits__grid {
+    grid-template-columns: 1fr;
+  }
     }
 
     /* =========================
@@ -291,9 +309,26 @@
     body.modal-open { overflow:hidden; }
     .nh-modal { position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.7); backdrop-filter:blur(2px); z-index:2000; }
     .nh-modal.is-open { display:flex; }
-    .nh-modal__dialog { position:relative; max-width:min(92vw, 1200px); max-height:92vh; outline:none; }
-    .nh-modal__img { max-width:100%; max-height:92vh; object-fit:contain; box-shadow:0 12px 36px rgba(0,0,0,.5); background:#111; }
-    .nh-modal__close { position:absolute; top:10px; right:10px; border:0; background:rgba(0,0,0,.55); color:#fff; width:40px; height:40px; cursor:pointer; display:grid; place-items:center; font-size:24px; line-height:1; transition:background .2s ease, transform .12s ease; }
+    .nh-modal__dialog {
+  position:relative;
+  max-width:min(92vw, 1200px);
+  max-height:92vh;
+  outline:none;
+  background:#111;
+  overflow-y:auto;        /* allow vertical scroll */
+  padding:20px;           /* spacing for images */
+  box-shadow:0 12px 36px rgba(0,0,0,.5);
+}
+
+/* All images inside modal */
+.nh-modal__dialog img {
+  width:100%;
+  height:auto;
+  margin-bottom:20px;
+  object-fit:contain;
+  display:block;
+}
+  .nh-modal__close { position:absolute; top:10px; right:10px; border:0; background:rgba(0,0,0,.55); color:#fff; width:40px; height:40px; cursor:pointer; display:grid; place-items:center; font-size:24px; line-height:1; transition:background .2s ease, transform .12s ease; }
     .nh-modal__close:hover { background:rgba(0,0,0,.75); transform:translateY(-1px); }
     .nh-modal__close:active { transform:scale(.98); }
     .nh-project[role="button"] { outline:none; }
@@ -339,6 +374,141 @@
       .nh-footer__top { flex-direction:column; align-items:flex-start; gap:16px; }
       .nh-footer__bottom { flex-direction:column; align-items:flex-start; gap:8px; }
     }
+/* =========================
+   17) CASE STUDIES
+   ========================= */
+.nh-cases {
+  padding:clamp(56px,8vw,96px) 0;
+  background:#fff;
+  color:var(--text);
+}
+.nh-cases .nh-wrap { max-width:var(--wrap); }
+
+.nh-cases__eyebrow{
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:#7b685a;
+  font-weight:700;
+  font-size:.9rem;
+  margin:0 0 8px;
+  text-align:center;
+}
+.nh-cases__title{
+  text-align:center;
+  margin:0 0 clamp(28px,4vw,44px);
+}
+.nh-cases__title em{ color:#664833; font-style:italic; font-weight:600; }
+
+
+/* One card per row */
+.nh-cases__grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:clamp(24px,3vw,32px);
+}
+
+/* Card */
+.nh-case{
+  position:relative; /* for badge */
+  background:linear-gradient(180deg,#FFFFFF 0%, #FBF7F2 100%);
+  border:1px solid #F4EDE8;
+  box-shadow:0 8px 24px rgba(0,0,0,.06);
+  display:grid;
+  grid-template-columns:1fr 1fr; /* text | image on desktop */
+  gap:clamp(16px,2.5vw,4px);
+  padding:clamp(18px,2.4vw,34px);
+  align-items:top;
+}
+
+/* Top-right badge */
+.nh-case__badge{
+  position:absolute;
+  top:clamp(14px,2vw,28px);
+  right:clamp(14px,2vw,28px);
+  background:linear-gradient(105deg, var(--gold-1), var(--gold-2) 45%, var(--gold-3));
+  color:#2a1b0d;
+  font-weight:700;
+  font-size:.78rem;
+  padding:6px 12px;
+  z-index:2;
+}
+
+.nh-case__title{
+  font-family:var(--font-display);
+  font-size:1.8rem;
+  margin:.1rem 0 .6rem;
+}
+
+/* Problem / Solution rows — matches reference style */
+.nh-case__list{ margin-top:20px; margin-right: 20px; padding:0; list-style:none; }
+.nh-case__row{
+  display:grid;
+  grid-template-columns:auto 1fr;    /* number | text */
+  column-gap:clamp(16px,2.2vw,28px);
+  align-items:start;
+  padding:clamp(10px,1.2vw,14px) 0 clamp(18px,1.8vw,22px);
+  border-bottom:1px solid #F0E6DC;
+}
+.nh-case__row:last-child{ border-bottom:0; }
+
+.nh-case__num{
+  background:transparent;
+  width:60px; height:auto;
+  line-height:1;
+  color:#664833;
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:clamp(2.6rem,5.5vw,3.6rem); /* big 01 / 02 */
+  letter-spacing:.01em;
+  margin-top: 2px;
+}
+
+.nh-case__label{
+  display:block;
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:clamp(1.2rem,2.2vw,1.4rem);
+  color:#2a1b0d;
+}
+.nh-case__row > div{
+  max-width:56ch;
+  color:#443429;
+  line-height:1.7;
+  font-size:1.02rem;
+}
+.nh-case__stat{ color:#3b2717; font-weight:700; }
+
+/* Media */
+.nh-case__media{ aspect-ratio:16/10; overflow:hidden; position:relative; cursor:zoom-in; margin: 0}
+.nh-case__media img{ width:100%; height:100%; object-fit:cover; transform:scale(1); transition:transform .45s cubic-bezier(.2,.7,.2,1); }
+.nh-case__media:hover img,
+.nh-case__media:focus-within img{ transform:scale(1.06); }
+
+/* Stack card columns on mobile */
+@media (max-width:980px){
+  .nh-case{ grid-template-columns:1fr; }
+}
+
+/* Bigger, white “card” */
+#nh-project-modal .nh-modal__dialog{
+  overflow:auto;             /* scroll when needed */
+  background:#fff;           /* white card */
+  padding:36px;              /* inner spacing */
+  box-shadow:0 24px 60px rgba(0,0,0,.35);
+}
+
+/* Images should sit on white, not black */
+#nh-project-modal .nh-modal__img{ background:transparent; }
+
+/* If you’re using the multi-image version */
+#nh-project-modal .nh-modal__content img{
+  width:100%;
+  height:auto;
+  display:block;
+  margin-bottom:20px;
+}
+
+
   </style>
 </head>
 
@@ -361,8 +531,8 @@
         <!-- Links -->
         <div id="primary-links" class="nh-nav__links">
           <a href="#about">About</a>
+          <a href="#pricing">Services</a>
           <a href="#projects">Projects</a>
-          <a href="#services">Services</a>
           <a class="nh-btn nh-btn--outline" href="https://calendly.com/neyhivedesigns/30min">Book a call</a>
         </div>
       </nav>
@@ -422,7 +592,7 @@
             </div>
             <div class="nh-benefit__text">
               <h3>Custom Website Redesign</h3>
-              <p>I redesign your website with a custom look that aligns with your brand and goals.</p>
+              <p>Tailored redesigns that align with your brand and elevate your online presence.</p>
             </div>
           </article>
 
@@ -433,7 +603,7 @@
             </div>
             <div class="nh-benefit__text">
               <h3>Best User Experience</h3>
-              <p>I craft seamless user experiences that feel effortless and keep visitors engaged.</p>
+              <p>Effortless experiences that keep visitors engaged and encourage interaction.</p>
             </div>
           </article>
 
@@ -444,7 +614,7 @@
             </div>
             <div class="nh-benefit__text">
               <h3>Conversion-Focused</h3>
-              <p>I design pages that guide visitors to take action and boost conversions.</p>
+              <p>Strategic designs that guide visitors to act and boost conversions.</p>
             </div>
           </article>
 
@@ -455,7 +625,7 @@
             </div>
             <div class="nh-benefit__text">
               <h3>Mobile-Responsive</h3>
-              <p>I ensure your website looks and works flawlessly on all screen sizes.</p>
+              <p>Optimized for every device to ensure flawless performance anywhere.</p>
             </div>
           </article>
 
@@ -466,7 +636,7 @@
             </div>
             <div class="nh-benefit__text">
               <h3>SEO-Friendly</h3>
-              <p>I redesign with clean structure to help your site rank better on search engines.</p>
+              <p>Structured for stronger rankings, organic traffic, and higher visibility.</p>
             </div>
           </article>
 
@@ -477,7 +647,7 @@
             </div>
             <div class="nh-benefit__text">
               <h3>Brand Alignment</h3>
-              <p>I create designs that consistently reflect your brand’s voice, style, and identity.</p>
+              <p>Designs that reflect your brand’s voice, style, and identity.</p>
             </div>
           </article>
         </div>
@@ -485,7 +655,7 @@
     </section>
 
     <!-- Transform CTA -->
-    <section id="transform" class="nh-transform" aria-labelledby="transform-title">
+    <section id="about" class="nh-transform" aria-labelledby="transform-title">
       <div class="nh-wrap">
         <div class="nh-transform__grid">
           <figure class="nh-transform__media nh-reveal">
@@ -494,11 +664,11 @@
 
           <div class="nh-transform__copy nh-reveal" style="transition-delay:.12s">
             <h2 id="transform-title" class="nh-transform__title">
-              I Help Growing Brands<br /><em>Transform</em> Their Websites
+              We Help Growing Brands<br /><em>Transform</em> Their Websites
             </h2>
             <p class="nh-transform__lead">
               Your website should do more than exist — it should impress, connect, and convert.
-              I redesign outdated sites into modern, high-impact platforms that elevate your brand and grow your business.
+              We redesign outdated sites into modern, high-impact platforms that elevate your brand and grow your business.
             </p>
             <div class="nh-transform__cta">
               <a class="nh-btn nh-btn--coffee" href="https://calendly.com/neyhivedesigns/30min">Book a Discovery Call</a>
@@ -509,7 +679,7 @@
     </section>
 
     <!-- Tailored Projects -->
-    <section id="projects" class="nh-projects" aria-labelledby="projects-title">
+    <section id="projects-2" class="nh-projects" aria-labelledby="projects-title">
       <div class="nh-wrap">
         <h2 id="projects-title" class="nh-projects__title"><em>Tailored</em> for Brands Like Yours</h2>
 
@@ -628,7 +798,177 @@
       </div>
     </section>
 
-    <!-- CTA -->
+   
+
+   <!-- Case Studies -->
+<section id="projects" class="nh-cases" aria-labelledby="case-studies-title">
+  <div class="nh-wrap">
+    <p class="nh-cases__eyebrow">Our Work</p>
+    <h2 id="case-studies-title" class="nh-cases__title"><em>Redesigns</em> That Redefine Excellence</h2>
+
+    <div class="nh-cases__grid nh-reveal-stagger">
+      <!-- Case 1 -->
+      <article class="nh-case">
+       
+        <div class="nh-case__copy">
+          <h3 class="nh-case__title">Online Store Web Redesign</h3>
+          <ul class="nh-case__list">
+            <li class="nh-case__row">
+              <span class="nh-case__num">01</span>
+              <div>
+                <span class="nh-case__label">Problem</span>
+               The online bookstore’s cluttered layout and unorganized images hurt navigation and user experience.
+              </div>
+            </li>
+            <li class="nh-case__row">
+              <span class="nh-case__num">02</span>
+              <div>
+                <span class="nh-case__label">Solution</span>
+                Redesigned the site for better usability, simpler navigation, and cleaner brand-aligned UX.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+       <figure class="nh-case__media" 
+        role="button" 
+        tabindex="0" 
+        aria-label="Open case study image"
+        data-gallery="/images/neyhive/case-1-2x.webp,/images/neyhive/case-1-2-2x.webp">
+        <img src="/images/neyhive/case-1.webp" alt="Plant store redesign preview">
+      </figure>
+
+      </article>
+
+      <!-- Case 2 -->
+      <article class="nh-case">
+
+        <div class="nh-case__copy">
+          <h3 class="nh-case__title">Agency Website Redesign</h3>
+          <ul class="nh-case__list">
+            <li class="nh-case__row">
+              <span class="nh-case__num">01</span>
+              <div>
+                <span class="nh-case__label">Problem</span>
+The agency’s website looked outdated and failed to reflect its brand or showcase its digital marketing expertise.              </div>
+            </li>
+            <li class="nh-case__row">
+              <span class="nh-case__num">02</span>
+              <div>
+                <span class="nh-case__label">Solution</span>
+Redesigned with a clean, impactful layout that organizes content and highlights services effectively.              </div>
+            </li>
+          </ul>
+        </div>
+
+        <figure class="nh-case__media" 
+        role="button" 
+        tabindex="0" 
+        aria-label="Open case study image"
+        data-gallery="/images/neyhive/case-2-2x.webp,/images/neyhive/case-2-2-2x.webp">
+        <img src="/images/neyhive/case-2.webp" alt="Plant store redesign preview">
+      </figure>
+      </article>
+
+      <!-- Case 3 -->
+      <article class="nh-case">
+
+        <div class="nh-case__copy">
+          <h3 class="nh-case__title">Ecommerce Website Redesign</h3>
+          <ul class="nh-case__list">
+            <li class="nh-case__row">
+              <span class="nh-case__num">01</span>
+              <div>
+                <span class="nh-case__label">Problem</span>
+                Large images and disorganized categories made
+navigation difficult and reduced engagement.
+              </div>
+            </li>
+            <li class="nh-case__row">
+              <span class="nh-case__num">02</span>
+              <div>
+                <span class="nh-case__label">Solution</span>
+                Redesigned with clear CTAs, organized plant categories, and new sections to boost sales and encourage exploration.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <figure class="nh-case__media" 
+        role="button" 
+        tabindex="0" 
+        aria-label="Open case study image"
+        data-gallery="/images/neyhive/case-3-2x.webp,/images/neyhive/case-3-2-2x.webp">
+        <img src="/images/neyhive/case-3.webp" alt="Plant store redesign preview">
+      </figure>
+      </article>
+
+      <!-- Case 4 -->
+      <article class="nh-case">
+
+        <div class="nh-case__copy">
+          <h3 class="nh-case__title">Personal Brand Web Redesign</h3>
+          <ul class="nh-case__list">
+            <li class="nh-case__row">
+              <span class="nh-case__num">01</span>
+              <div>
+                <span class="nh-case__label">Problem</span>
+Nina Daniels’ website was cluttered and hard to navigate, especially on mobile, hurting user experience and image.
+              </div>
+            </li>
+            <li class="nh-case__row">
+              <span class="nh-case__num">02</span>
+              <div>
+                <span class="nh-case__label">Solution</span>
+                Redesigned in WordPress Kadence with UI/UX best practices, mobile responsiveness, and a refreshed brand.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+       <figure class="nh-case__media"
+        role="button"
+        tabindex="0"
+        aria-label="Open case study image"
+        aria-controls="nh-project-modal"
+        data-gallery="/images/neyhive/case-4-2x.webp,/images/neyhive/case-4-2-2x.webp">
+  <img src="/images/neyhive/case-4.webp" alt="Plant store redesign preview">
+</figure>
+
+      </article>
+
+      <!-- Case 5 -->
+      <article class="nh-case">
+
+        <div class="nh-case__copy">
+          <h3 class="nh-case__title">Tech Company Web Redesign</h3>
+          <ul class="nh-case__list">
+            <li class="nh-case__row">
+              <span class="nh-case__num">01</span>
+              <div>
+                <span class="nh-case__label">Problem</span>
+The company’s corporate-style website looked generic and failed to highlight its AI expertise or communicate its value.            </li>
+            <li class="nh-case__row">
+              <span class="nh-case__num">02</span>
+              <div>
+                <span class="nh-case__label">Solution</span>
+A modern, futuristic dark-themed redesign with clearer content, streamlined navigation, and refined branding to showcase AI solutions.              </div>
+            </li>
+          </ul>
+        </div>
+
+       <figure class="nh-case__media" 
+        role="button" 
+        tabindex="0" 
+        aria-label="Open case study image"
+        data-gallery="/images/neyhive/case-5-2x.webp,/images/neyhive/case-5-2-2x.webp">
+        <img src="/images/neyhive/case-5.webp" alt="Plant store redesign preview">
+      </figure>
+      </article>
+    </div>
+  </div>
+</section>
+ <!-- CTA -->
     <section id="cta" class="nh-cta-slab" aria-labelledby="cta-title">
       <div class="nh-wrap nh-reveal">
         <h2 id="cta-title" class="nh-cta-slab__title">Transform Your Website Into a <em>True Reflection</em> of Your Brand</h2>
@@ -657,7 +997,7 @@
           <a href="#projects">Projects</a>
           <a href="#benefits">Benefits</a>
           <a href="#pricing">Pricing</a>
-          <a href="#book">Book a Call</a>
+          <a href="https://calendly.com/neyhivedesigns/30min">Book a Call</a>
         </nav>
       </div>
 
@@ -680,134 +1020,218 @@
   <div class="nh-modal" id="nh-project-modal" role="dialog" aria-modal="true" aria-labelledby="nh-project-modal-title">
     <h2 id="nh-project-modal-title" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Project image preview</h2>
     <div class="nh-modal__dialog" tabindex="-1">
-      <button class="nh-modal__close" type="button" aria-label="Close">×</button>
-      <img class="nh-modal__img" src="" alt="" />
-    </div>
+  <button class="nh-modal__close" type="button" aria-label="Close">×</button>
+
+  <!-- Scrollable multiple images -->
+  <div class="nh-modal__content">
+    <img src="" alt="" />
+    <img src="" alt="" />
+    <img src="" alt="" />
+  </div>
+</div>
+
   </div>
 
-  <!-- Sticky nav blur + mobile toggle + reveal animations + project modal -->
-  <script>
-    (function(){
-      const wrap = document.querySelector('.nh-nav-wrap');
-      const nav = document.querySelector('.nh-nav');
-      const toggle = document.querySelector('.nh-nav__toggle');
-      const panel = document.getElementById('primary-links');
+<!-- Sticky nav blur + mobile toggle + reveal animations + image modal -->
+<script>
+  (function(){
+    // ===== Footer year (safe even if element isn't present yet) =====
+    const yearEl = document.getElementById('nh-year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-      // reserve space for the fixed nav
-      const setNavOffset = () => {
-        if (!wrap) return;
-        const h = wrap.offsetHeight;
-        document.documentElement.style.setProperty('--nav-h', h + 'px');
+    // ===== Sticky nav / mobile toggle =====
+    const wrap = document.querySelector('.nh-nav-wrap');
+    const nav = document.querySelector('.nh-nav');
+    const toggle = document.querySelector('.nh-nav__toggle');
+    const panel = document.getElementById('primary-links');
+
+    // Reserve space for fixed nav
+    const setNavOffset = () => {
+      if (!wrap) return;
+      const h = wrap.offsetHeight;
+      document.documentElement.style.setProperty('--nav-h', h + 'px');
+    };
+    const recalcAfterToggle = () => requestAnimationFrame(setNavOffset);
+    setNavOffset();
+    window.addEventListener('resize', setNavOffset, { passive:true });
+
+    // Blur/tint on scroll
+    const onScroll = () => wrap && (window.scrollY > 10 ? wrap.classList.add('is-scrolled') : wrap.classList.remove('is-scrolled'));
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive:true });
+
+    // Mobile menu toggle
+    if (nav && toggle && panel) {
+      const setOpen = (open) => {
+        nav.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', String(open));
       };
-      const recalcAfterToggle = () => requestAnimationFrame(setNavOffset);
-      setNavOffset();
-      window.addEventListener('resize', setNavOffset, { passive:true });
-
-      // blur/tint on scroll
-      const onScroll = () => wrap && (window.scrollY > 10 ? wrap.classList.add('is-scrolled') : wrap.classList.remove('is-scrolled'));
-      onScroll();
-      window.addEventListener('scroll', onScroll, { passive:true });
-
-      // mobile menu toggle
-      if (nav && toggle && panel) {
-        const setOpen = (open) => {
-          nav.classList.toggle('is-open', open);
-          toggle.setAttribute('aria-expanded', String(open));
-        };
-        toggle.addEventListener('click', () => {
-          const open = !nav.classList.contains('is-open');
-          setOpen(open);
+      toggle.addEventListener('click', () => {
+        const open = !nav.classList.contains('is-open');
+        setOpen(open);
+        recalcAfterToggle();
+      });
+      panel.addEventListener('click', e => {
+        if (e.target.closest('a')) {
+          setOpen(false);
           recalcAfterToggle();
-        });
-        panel.addEventListener('click', e => {
-          if (e.target.closest('a')) {
-            setOpen(false);
-            recalcAfterToggle();
+        }
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+          setOpen(false);
+          recalcAfterToggle();
+        }
+      });
+    }
+
+    // ===== Scroll reveal =====
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced && 'IntersectionObserver' in window) {
+      const singles = document.querySelectorAll('.nh-reveal');
+      const staggers = document.querySelectorAll('.nh-reveal-stagger');
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
           }
         });
-        document.addEventListener('keydown', e => {
-          if (e.key === 'Escape') {
-            setOpen(false);
-            recalcAfterToggle();
-          }
-        });
+      }, { root:null, rootMargin:'0px 0px -10% 0px', threshold:0.15 });
+
+      singles.forEach(el => io.observe(el));
+      staggers.forEach(group => io.observe(group));
+    } else {
+      document.querySelectorAll('.nh-reveal, .nh-reveal-stagger').forEach(el => el.classList.add('is-visible'));
+    }
+
+    // ===== Image Modal (projects + case studies) — supports multi-image scroll =====
+    const modal = document.getElementById('nh-project-modal');
+    const modalDialog = modal?.querySelector('.nh-modal__dialog');
+    const modalClose = modal?.querySelector('.nh-modal__close');
+    const legacyImg = modal?.querySelector('.nh-modal__img'); // backward-compat
+    let content = modal?.querySelector('.nh-modal__content'); // new container (optional in HTML)
+    let lastActiveEl = null;
+
+    // Ensure a content container exists (create if missing)
+    if (modal && modalDialog) {
+      if (!content) {
+        content = document.createElement('div');
+        content.className = 'nh-modal__content';
+        // Place content AFTER the close button and BEFORE any legacy image
+        if (legacyImg) {
+          legacyImg.insertAdjacentElement('beforebegin', content);
+        } else {
+          modalDialog.appendChild(content);
+        }
+      }
+    }
+
+    function openModal(srcs, alt) {
+      if (!modal || !content) return;
+
+      // Normalize to array
+      const sources = Array.isArray(srcs) ? srcs : [srcs].filter(Boolean);
+
+      // Clear old
+      content.innerHTML = '';
+
+      // Hide legacy single image if present
+      if (legacyImg) {
+        legacyImg.src = '';
+        legacyImg.alt = '';
+        legacyImg.style.display = 'none';
       }
 
-      // ===== Scroll Reveal Animations =====
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!prefersReduced && 'IntersectionObserver' in window) {
-        const singles = document.querySelectorAll('.nh-reveal');
-        const staggers = document.querySelectorAll('.nh-reveal-stagger');
-
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              io.unobserve(entry.target);
-            }
-          });
-        }, { root:null, rootMargin:'0px 0px -10% 0px', threshold:0.15 });
-
-        singles.forEach(el => io.observe(el));
-        staggers.forEach(group => io.observe(group));
-      } else {
-        document.querySelectorAll('.nh-reveal, .nh-reveal-stagger').forEach(el => el.classList.add('is-visible'));
-      }
-
-      // ===== Project Image Modal =====
-      const modal = document.getElementById('nh-project-modal');
-      const modalDialog = modal?.querySelector('.nh-modal__dialog');
-      const modalImg = modal?.querySelector('.nh-modal__img');
-      const modalClose = modal?.querySelector('.nh-modal__close');
-      let lastActiveEl = null;
-
-      function openModal(src, alt) {
-        if (!modal || !modalImg) return;
-        modalImg.src = src;
-        modalImg.alt = alt || 'Project image';
-        modal.classList.add('is-open');
-        document.body.classList.add('modal-open');
-        lastActiveEl = document.activeElement;
-        modalDialog?.focus();
-      }
-
-      function closeModal() {
-        if (!modal || !modalImg) return;
-        modal.classList.remove('is-open');
-        document.body.classList.remove('modal-open');
-        modalImg.src = '';
-        if (lastActiveEl && typeof lastActiveEl.focus === 'function') lastActiveEl.focus();
-      }
-
-      // Click / keyboard on any project card
-      document.querySelectorAll('.nh-project').forEach(card => {
-        card.setAttribute('role', 'button');
-        card.setAttribute('tabindex', '0');
-        card.setAttribute('aria-label', 'Open project image');
-
-        const getImage = () => {
-          const img = card.querySelector('.nh-project__media img');
-          if (img) {
-            const src = img.dataset.full || img.getAttribute('src');
-            const alt = img.getAttribute('alt') || '';
-            openModal(src, alt);
-          }
-        };
-
-        card.addEventListener('click', getImage);
-        card.addEventListener('keydown', e => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            getImage();
-          }
-        });
+      // Inject images
+      sources.forEach(src => {
+        if (!src) return;
+        const img = document.createElement('img');
+        img.src = src.trim();
+        img.alt = alt || 'Preview image';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        content.appendChild(img);
       });
 
-      // Close interactions
-      modalClose?.addEventListener('click', closeModal);
-      modal?.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-      document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
-    })();
-  </script>
+      // Open
+      modal.classList.add('is-open');
+      document.body.classList.add('modal-open');
+      lastActiveEl = document.activeElement;
+      modalDialog?.focus();
+
+      // Make dialog scrollable even if CSS hasn't been updated
+    if (modalDialog && !modalDialog.style.overflowY) {
+  modalDialog.style.overflowY = 'auto';
+  modalDialog.style.maxHeight = modalDialog.style.maxHeight || '80vh';
+  // let CSS control background/padding
+}
+
+    }
+
+    function closeModal() {
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      document.body.classList.remove('modal-open');
+
+      // Reset content and legacy image
+      if (content) content.innerHTML = '';
+      if (legacyImg) {
+        legacyImg.src = '';
+        legacyImg.alt = '';
+        legacyImg.style.removeProperty('display');
+      }
+
+      if (lastActiveEl && typeof lastActiveEl.focus === 'function') lastActiveEl.focus();
+    }
+
+    // Parse the data-gallery attribute into an array of URLs
+    function parseGallery(el) {
+      const raw = el.getAttribute('data-gallery');
+      if (!raw) return null;
+      return raw.split(',').map(s => s.trim()).filter(Boolean);
+    }
+
+    // Helper: attach modal behavior to media blocks
+    function attachModal(selector) {
+      document.querySelectorAll(selector).forEach(block => {
+        // Ensure access attrs (your CSS already sets role/tabindex on some)
+        if (!block.hasAttribute('role')) block.setAttribute('role','button');
+        if (!block.hasAttribute('tabindex')) block.setAttribute('tabindex','0');
+        if (!block.hasAttribute('aria-label')) block.setAttribute('aria-label','Open image preview');
+
+        const openFromBlock = () => {
+          const imgs = parseGallery(block);
+          const thumb = block.querySelector('img');
+          const alt = thumb?.getAttribute('alt') || '';
+
+          if (imgs && imgs.length) {
+            openModal(imgs, alt);
+          } else if (thumb) {
+            const src = thumb.dataset.full || thumb.currentSrc || thumb.src;
+            openModal([src], alt);
+          }
+        };
+
+        block.addEventListener('click', openFromBlock);
+        block.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFromBlock(); }
+        });
+      });
+    }
+
+    // Apply to both projects and case studies
+    attachModal('.nh-project__media');
+    attachModal('.nh-case__media');
+
+    // Close interactions
+    modalClose?.addEventListener('click', closeModal);
+    modal?.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal?.classList.contains('is-open')) closeModal(); });
+  })();
+</script>
+
+
 </body>
 </html>
